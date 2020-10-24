@@ -1,0 +1,14 @@
+################
+##### USA ######
+################
+
+SWE_riksdag = {
+	icon = usa_congress
+	allowed = {
+		original_tag = SWE
+	}
+
+	scripted_gui = swe_riksdag_decision_ui	
+
+	priority = 85
+}

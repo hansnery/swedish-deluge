@@ -1,0 +1,39 @@
+#	Example:
+# 
+#	example_trigger = {
+#		tag = GER
+#		is_ai = no
+#	}
+#
+#
+#	In a script file:
+#
+#	trigger = {
+#		exampel_trigger = yes
+#	}
+#
+
+
+riksdag_low_support_trigger = {
+	custom_trigger_tooltip = {
+		tooltip = riksdag_low_support_trigger_tt
+		check_variable = { var = senators_support value = quorum_low compare = greater_than_or_equals }
+		check_variable = { var = representatives_support value = 92 compare = greater_than_or_equals }
+	}
+}
+
+riksdag_medium_support_trigger = {
+	custom_trigger_tooltip = {
+		tooltip = riksdag_medium_support_trigger_tt
+		check_variable = { var = senators_support value = quorum_medium compare = greater_than_or_equals }
+		check_variable = { var = representatives_support value = 115 compare = greater_than_or_equals }
+	}
+}
+
+riksdag_high_support_trigger = {
+	custom_trigger_tooltip = {
+		tooltip = riksdag_high_support_trigger_tt
+		check_variable = { var = senators_support value = quorum_high compare = greater_than_or_equals }
+		check_variable = { var = representatives_support value = 138 compare = greater_than_or_equals }
+	}
+}

@@ -1,0 +1,11 @@
+spriteTypes = {   
+
+    # Must have _idea_ written in the name to work.
+	
+	# Generic
+	
+	spriteType = {
+        name = "GFX_idea_gustaf_v"
+        textureFile = "gfx/interface/ideas/idea_gustaf_v.dds"
+    }
+}

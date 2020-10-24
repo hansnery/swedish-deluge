@@ -1,0 +1,19 @@
+scripted_gui = {
+
+	swe_riksdag_decision_ui = {
+		context_type = decision_category
+		window_name = "swe_riksdag_decision_ui_window"
+
+		properties = {
+			first_chamber_icon = {
+				frame = current_senate_icon_frame
+			}
+
+			second_chamber_icon = {
+				frame = current_house_icon_frame
+			}
+		}
+	}
+	
+}
+

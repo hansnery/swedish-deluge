@@ -1,0 +1,7 @@
+spriteTypes = {
+	# SWE
+	spriteType = {
+        name = "GFX_goal_electoral_reform"
+        textureFile = "gfx/interface/goals/goal_electoral_reform.dds"
+    }
+}
