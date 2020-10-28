@@ -26,6 +26,34 @@ ideas = {
 			
 			traits = { popular_figurehead }
 		}
+		
+		interventionist_gustaf_v = {
+		
+			picture = gustaf_v
+			
+			allowed = {
+				original_tag = SWE
+			}
+
+			allowed_civil_war = {
+				NOT ={
+					has_government = communism
+				}
+				NOT = {
+					any_other_country = {
+						original_tag = SWE
+						has_government = democratic 
+						NOT = {
+							tag = ROOT
+						}
+					}
+				}
+			}
+			
+			removal_cost = -1
+			
+			traits = { spirit_of_gustavus_adolphus }
+		}
 	
 		en_svensk_tiger = {
 			
@@ -46,7 +74,172 @@ ideas = {
 				enemy_justify_war_goal_time = 0.1
 			}
 		}
-	
+		
+		offensive_realism = {
+			
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				has_government = democratic
+			}
+
+			removal_cost = -1
+
+			picture = generic_spy_intel
+			
+			modifier = {
+				political_power_factor = 0.1
+				justify_war_goal_time = -0.25
+			}
+		}
+		
+		SWE_exclusive_iron_exports = {
+
+			allowed = {
+				original_tag = SWE
+			}
+		
+			allowed_civil_war = {
+				tag = SWE
+			}
+			cancel = {
+				if = {
+					limit = { has_completed_focus = SWE_give_SOV_preferential_treatment }
+					OR = {
+						NOT = { country_exists = SOV }
+						has_war_with = SOV
+					}
+				}
+				else_if = {
+					limit = { has_completed_focus = SWE_give_ENG_preferential_treatment }
+					OR = {
+						NOT = { country_exists = ENG }
+						has_war_with = ENG
+					}
+				}
+				else_if = {
+					limit = { has_completed_focus = SWE_give_GER_preferential_treatment }
+					OR = {
+						NOT = { country_exists = GER }
+						has_war_with = GER
+					}
+				}
+			}
+			removal_cost = -1
+			
+			modifier = {
+				consumer_goods_factor = -0.05
+				min_export = 0.1
+			} 
+		}
+		
+		class_struggle_rekindled = {
+			picture = SPR_class_war
+
+			allowed = {
+				original_tag = SWE
+			}
+		
+			allowed_civil_war = {
+				tag = SWE
+			}
+			removal_cost = -1
+			
+			modifier = {
+				stability_weekly = -0.005
+				communism_drift = 0.1
+			} 
+		}
+		
+		class_solidarity = {
+			picture = SPR_collectivized_society
+
+			allowed = {
+				original_tag = SWE
+			}
+		
+			allowed_civil_war = {
+				tag = SWE
+			}
+			removal_cost = -1
+			
+			modifier = {
+				consumer_goods_factor = 0.05
+				fascism_drift = 0.1
+			} 
+		}
+		
+		SWE_nationalized_industry = {
+
+			allowed = {
+				original_tag = SWE
+			}
+		
+			allowed_civil_war = {
+				tag = SWE
+			}
+			removal_cost = -1
+			
+			modifier = {
+				consumer_goods_factor = -0.05
+				stability_factor = -0.1
+			}
+		}
+		
+		SWE_loyal_aristocracy = {
+			picture = ROM_king_carol_ii_hedonist
+
+			allowed = {
+				original_tag = SWE
+			}
+		
+			allowed_civil_war = {
+				tag = SWE
+			}
+			removal_cost = -1
+			
+			modifier = {
+				conscription = 0.02
+				army_leader_start_level = 1
+			}
+		}
+		
+		SWE_state_ownership_of_production = {
+			picture = generic_central_management
+
+			allowed = {
+				original_tag = SWE
+			}
+		
+			allowed_civil_war = {
+				tag = SWE
+			}
+			removal_cost = -1
+			
+			modifier = {
+				production_factory_start_efficiency_factor = 0.2
+			} 
+		}
+		
+		SWE_authoritarian_corporatism_idea = {
+			picture = tur_etatism
+
+			allowed = {
+				original_tag = SWE
+			}
+		
+			allowed_civil_war = {
+				tag = SWE
+			}
+			removal_cost = -1
+			
+			modifier = {
+				industrial_capacity_factory = 0.1
+				production_factory_max_efficiency_factor = 0.1
+			} 
+		}
 	}
 
 	political_advisor = {
@@ -82,6 +275,85 @@ ideas = {
 			}
 			
 			traits = { captain_of_industry }
+		}
+		
+		SWE_sven_olov_lindholm = {
+		
+			picture = generic_political_advisor_europe_1
+			
+			allowed = {
+				original_tag = SWE
+			}
+
+			available = {
+				has_completed_focus = SWE_favor_business_ownership
+			}
+			
+			traits = { fascist_demagogue }
+	
+			do_effect = {
+				NOT = {
+					has_government = fascism
+				}
+			}
+		}
+		
+		SWE_party_whip = {
+		
+			picture = generic_political_advisor_europe_1
+			
+			allowed = {
+				original_tag = SWE
+			}
+			
+			available = {
+				has_completed_focus = SWE_exploit_the_system
+			}
+			
+			traits = { party_whip }
+		}
+		
+		SWE_loyal_aristocrat = {
+		
+			picture = generic_political_advisor_europe_2
+			
+			allowed = {
+				original_tag = SWE
+			}
+			
+			available = {
+				has_completed_focus = SWE_align_the_first_chamber
+			}
+			
+			traits = { loyal_aristocrat }
+		}
+		
+		SWE_staunch_monarchist = {
+
+			picture = generic_political_advisor_europe_1
+
+			allowed = {
+				original_tag = SWE
+			}
+			
+			available = {
+				# has_completed_focus = XXX
+			}
+			
+			traits = { staunch_monarchist }
+		}
+		
+		SWE_christian_gunther = {
+
+			allowed = {
+				original_tag = SWE
+			}
+			
+			available = {
+				
+			}
+			
+			traits = { small_state_realist }
 		}
 	}
 

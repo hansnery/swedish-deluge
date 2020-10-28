@@ -1,0 +1,87 @@
+# Allows you to create your own dynamic keys
+# to be called in localization.
+# defined_text -> this is it, we're defining the text
+# text -> a discrete entry that can be picked to display in loc.
+# trigger -> determines if a text entry will be picked or not.
+# (The triggers need to be valid for the scope the key is called in
+# (eg Root or From.From).)
+# localization_key -> points to the localization key
+# that'll be used if trigger passes
+
+defined_text = { 
+	name = GetSwedenDemandsForNorway
+	text = {
+		trigger = {	has_global_flag = sweden_demanded_trondelag	}
+		localization_key = SWEDEN_DEMANDED_TRONDELAG_LOC
+	}
+	text = {
+		trigger = {	has_global_flag = sweden_demanded_trondelag_and_nord_norge }
+		localization_key = SWEDEN_DEMANDED_TRONDELAG_AND_NORD_NORGE_LOC
+	}
+	text = {
+		trigger = {	has_global_flag = sweden_demanded_all_norway }
+		localization_key = SWEDEN_DEMANDED_ALL_NORWAY
+	}
+}
+defined_text = { 
+	name = GetSwedenGainsForNorway
+	text = {
+		trigger = {	has_global_flag = sweden_demanded_trondelag	}
+		localization_key = SWEDEN_GAINED_TRONDELAG_LOC
+	}
+	text = {
+		trigger = {	has_global_flag = sweden_demanded_trondelag_and_nord_norge }
+		localization_key = SWEDEN_GAINED_TRONDELAG_AND_NORD_NORGE_LOC
+	}
+	text = {
+		trigger = {	has_global_flag = sweden_demanded_all_norway }
+		localization_key = SWEDEN_GAINED_ALL_NORWAY
+	}
+}
+defined_text = { 
+	name = GetSwedenDemandsForFinland
+	text = {
+		trigger = {	has_global_flag = sweden_demanded_finland_annexation	}
+		localization_key = SWEDEN_DEMANDED_FINLAND_ANNEXATION_LOC
+	}
+	text = {
+		trigger = {	has_global_flag = sweden_demanded_finland_become_a_puppet }
+		localization_key = SWEDEN_DEMANDED_FINLAND_BECOMES_A_PUPPET_LOC
+	}
+}
+defined_text = { 
+	name = GetSwedenGainsForFinland
+	text = {
+		trigger = {	has_global_flag = sweden_demanded_finland_annexation	}
+		localization_key = SWEDEN_GAINED_FINLAND_LOC
+	}
+	text = {
+		trigger = {	has_global_flag = sweden_demanded_finland_become_a_puppet }
+		localization_key = SWEDEN_GAINED_PUPPET_FINLAND_LOC
+	}
+}
+defined_text = { 
+	name = GetExportsDestination
+	text = {
+		trigger = {
+			NOT = {
+				has_completed_focus = SWE_give_SOV_preferential_treatment
+				has_completed_focus = SWE_give_ENG_preferential_treatment
+				has_completed_focus = SWE_give_GER_preferential_treatment
+			}	
+		}
+		localization_key = SWEDEN_EXCLUSIVE_IRON_EXPORTS
+	}
+	text = {
+		trigger = {	has_completed_focus = SWE_give_SOV_preferential_treatment }
+		localization_key = SWEDEN_EXCLUSIVE_IRON_EXPORTS_TO_THE_SOVIET_UNION
+	}
+	text = {
+		trigger = {	has_completed_focus = SWE_give_ENG_preferential_treatment }
+		localization_key = SWEDEN_EXCLUSIVE_IRON_EXPORTS_TO_THE_UK
+	}
+	text = {
+		trigger = {	has_completed_focus = SWE_give_GER_preferential_treatment }
+		localization_key = SWEDEN_EXCLUSIVE_IRON_EXPORTS_TO_GERMANY
+	}
+}

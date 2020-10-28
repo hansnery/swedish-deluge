@@ -1,0 +1,5 @@
+﻿l_english:
+ SWE_promised_neutrality_tt:0 "The King promises to maintain Sweden's neutrality."
+ depends_on_who_sweden_prefers:0 "This focus effect will depend which country Sweden will give preferential treatment to."
+ party_whip_tt:0 "Monthly §YSecond Chamber Support§!: §G+3§!"
+ loyal_aristocrat_tt:0 "Monthly §YFirst Chamber Support§!: §G+1§!"

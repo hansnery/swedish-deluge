@@ -1,0 +1,35 @@
+﻿###########################
+# Swedish Events
+###########################
+
+add_namespace = sd_news
+
+# Sweden Invades Norway
+news_event = {
+	id = sd_news.1
+	title = sd_news.1.t
+	desc = sd_news.1.d
+	picture = GFX_news_event_sweden_war_1
+	
+	major = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = sd_news.1.a
+		trigger = {
+			NOT = {
+				TAG = SWE
+				TAG = NOR
+			}
+		}
+	}
+	option = {
+		name = sd_news.1.b
+		trigger = { TAG = SWE }
+	}
+	option = {
+		name = sd_news.1.c
+		trigger = { TAG = NOR }
+	}
+}

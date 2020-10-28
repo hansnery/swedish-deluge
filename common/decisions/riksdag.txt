@@ -1,20 +1,23 @@
 SWE_riksdag = {
 	SWE_woo_the_first_chamber = {
 		icon = generic_political_discourse
+		
 		available = {
 			OR = {
 				check_variable = { senators_support < senators_total }
 				check_variable = { representatives_support < representatives_total }
 			}
 			not = {
-				has_decision = SWE_pass_conservative_bill
+				has_decision = SWE_woo_the_second_chamber
 			}
 			OR = {
 				political_power_daily > 0.14
 				has_political_power > 10
 			}
 		}
-		cost = 0
+		
+		cost = 50
+		
 		ai_will_do = {
 			factor = 10
 			modifier = {
@@ -30,98 +33,57 @@ SWE_riksdag = {
 				factor = 0
 			}
 		}
-		modifier = {
-			political_power_gain = -0.15
-		}
+		
 		days_remove = 30
+		
 		remove_effect = {
 			SWE_first_chamber_small_support = yes
-			SWE_second_chamber_small_opposition = yes
 		}
 	}
-	SWE_pass_conservative_bill = {
-		icon = generic_political_discourse
-		available = {
-			OR = {
-				check_variable = { senators_support < senators_total }
-				check_variable = { representatives_support < representatives_total }
-			}
-			not = {
-				has_decision = SWE_woo_the_first_chamber
-			}
-			OR = {
-				political_power_daily > 0.15
-				has_political_power > 10
-			}
-		}
+	# SWE_pass_conservative_bill = {
+		# icon = generic_political_discourse
+		# available = {
+			# OR = {
+				# check_variable = { senators_support < senators_total }
+				# check_variable = { representatives_support < representatives_total }
+			# }
+			# not = {
+				# has_decision = SWE_woo_the_first_chamber
+			# }
+			# OR = {
+				# political_power_daily > 0.15
+				# has_political_power > 10
+			# }
+		# }
 		# visible = { has_completed_focus = SWE_preserve_the_riksdag }
-		cost = 0
-		ai_will_do = {
-			factor = 10
-			modifier = {
-				riksdag_medium_support_trigger = yes
-				factor = 0.5
-			}
-			modifier = {
-				riksdag_low_support_trigger = yes
-				factor = 0.5
-			}
-			modifier = {
-				riksdag_high_support_trigger = yes
-				factor = 0
-			}
-		}
-		modifier = {
-			political_power_gain = -0.15
-			stability_weekly = -0.01
-		}
-		days_remove = 90
-		remove_effect = {
-			SWE_first_chamber_medium_support = yes
-		}
-	}
+		# cost = 0
+		# ai_will_do = {
+			# factor = 10
+			# modifier = {
+				# riksdag_medium_support_trigger = yes
+				# factor = 0.5
+			# }
+			# modifier = {
+				# riksdag_low_support_trigger = yes
+				# factor = 0.5
+			# }
+			# modifier = {
+				# riksdag_high_support_trigger = yes
+				# factor = 0
+			# }
+		# }
+		# modifier = {
+			# political_power_gain = -0.15
+			# stability_weekly = -0.01
+		# }
+		# days_remove = 90
+		# remove_effect = {
+			# SWE_first_chamber_medium_support = yes
+		# }
+	# }
 	SWE_woo_the_second_chamber = {
 		icon = generic_political_discourse
-		available = {
-			OR = {
-				check_variable = { senators_support < senators_total }
-				check_variable = { representatives_support < representatives_total }
-			}
-			not = {
-				has_decision = SWE_pass_conservative_bill
-			}
-			OR = {
-				political_power_daily > 0.15
-				has_political_power > 10
-			}
-		}
-		cost = 0
-		ai_will_do = {
-			factor = 10
-			modifier = {
-				riksdag_medium_support_trigger = yes
-				factor = 0.5
-			}
-			modifier = {
-				riksdag_low_support_trigger = yes
-				factor = 0.5
-			}
-			modifier = {
-				riksdag_high_support_trigger = yes
-				factor = 0
-			}
-		}
-		modifier = {
-			political_power_gain = -0.15
-		}
-		days_remove = 30
-		remove_effect = {
-			SWE_second_chamber_small_support = yes
-			SWE_first_chamber_small_opposition = yes
-		}
-	}
-	SWE_pass_social_democratic_bill = {
-		icon = generic_political_discourse
+		
 		available = {
 			OR = {
 				check_variable = { senators_support < senators_total }
@@ -135,7 +97,9 @@ SWE_riksdag = {
 				has_political_power > 10
 			}
 		}
-		cost = 0
+		
+		cost = 50
+		
 		ai_will_do = {
 			factor = 10
 			modifier = {
@@ -151,15 +115,53 @@ SWE_riksdag = {
 				factor = 0
 			}
 		}
-		modifier = {
-			political_power_gain = -0.15
-			stability_weekly = -0.01
-		}
-		days_remove = 90
+		
+		days_remove = 30
+		
 		remove_effect = {
-			SWE_second_chamber_medium_support = yes
+			SWE_second_chamber_small_support = yes
 		}
 	}
+	# SWE_pass_social_democratic_bill = {
+		# icon = generic_political_discourse
+		# available = {
+			# OR = {
+				# check_variable = { senators_support < senators_total }
+				# check_variable = { representatives_support < representatives_total }
+			# }
+			# not = {
+				# has_decision = SWE_woo_the_first_chamber
+			# }
+			# OR = {
+				# political_power_daily > 0.15
+				# has_political_power > 10
+			# }
+		# }
+		# cost = 0
+		# ai_will_do = {
+			# factor = 10
+			# modifier = {
+				# riksdag_medium_support_trigger = yes
+				# factor = 0.5
+			# }
+			# modifier = {
+				# riksdag_low_support_trigger = yes
+				# factor = 0.5
+			# }
+			# modifier = {
+				# riksdag_high_support_trigger = yes
+				# factor = 0
+			# }
+		# }
+		# modifier = {
+			# political_power_gain = -0.15
+			# stability_weekly = -0.01
+		# }
+		# days_remove = 90
+		# remove_effect = {
+			# SWE_second_chamber_medium_support = yes
+		# }
+	# }
 	# SWE_small_lobby_effort = {
 		# icon = generic_political_discourse
 		# available = {
@@ -318,7 +320,8 @@ SWE_riksdag = {
 				check_variable = { representatives_support < representatives_total }
 			}
 		}
-		visible = { has_completed_focus = USA_income_tax_reform }
+		# visible = { has_completed_focus = USA_income_tax_reform }
+		visible = { has_government = democratic }
 		cost = 0
 		ai_will_do = {
 			factor = 1
@@ -338,7 +341,7 @@ SWE_riksdag = {
 		available = {
 			riksdag_medium_support_trigger = yes
 		}
-		visible = {has_government = democratic }
+		visible = { has_government = democratic }
 		cost = 25
 		days_remove = 90
 		days_re_enable = 275
@@ -359,7 +362,7 @@ SWE_riksdag = {
 		available = {
 			riksdag_medium_support_trigger = yes
 		}
-		visible = {has_government = democratic }
+		visible = { has_government = democratic }
 		cost = 25
 		days_remove = 90
 		days_re_enable = 275
@@ -570,7 +573,7 @@ SWE_riksdag = {
 
 		}
 		visible = {
-			# has_completed_focus = SWE_union_representation_act
+			has_completed_focus = SWE_dissolve_the_riksdag
 		}
 		days_re_enable = 180
 		cost = 50

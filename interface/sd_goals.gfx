@@ -1,7 +1,44 @@
 spriteTypes = {
 	# SWE
+	
 	spriteType = {
-        name = "GFX_goal_electoral_reform"
-        textureFile = "gfx/interface/goals/goal_electoral_reform.dds"
+        name = "GFX_focus_SWE_exclusive_iron_exports"
+        textureFile = "gfx/interface/goals/focus_SWE_exclusive_iron_exports.dds"
+    }
+	spriteType = {
+        name = "GFX_focus_SWE_claim_aland"
+        textureFile = "gfx/interface/goals/focus_SWE_claim_aland.dds"
+    }
+	spriteType = {
+        name = "GFX_focus_SWE_subdue_norway"
+        textureFile = "gfx/interface/goals/focus_SWE_subdue_norway.dds"
+    }
+	spriteType = {
+        name = "GFX_focus_SWE_deluge"
+        textureFile = "gfx/interface/goals/focus_SWE_deluge.dds"
+    }
+	spriteType = {
+        name = "GFX_focus_SWE_reclaim_norway"
+        textureFile = "gfx/interface/goals/focus_SWE_reclaim_norway.dds"
+    }
+	spriteType = {
+        name = "GFX_focus_SWE_amend_the_great_discord"
+        textureFile = "gfx/interface/goals/focus_SWE_amend_the_great_discord.dds"
+    }
+	spriteType = {
+        name = "GFX_focus_SWE_power_to_the_king"
+        textureFile = "gfx/interface/goals/focus_SWE_power_to_the_king.dds"
+    }
+	spriteType = {
+        name = "GFX_focus_SWE_empire"
+        textureFile = "gfx/interface/goals/focus_SWE_empire.dds"
+    }
+	spriteType = {
+        name = "GFX_focus_SWE_great_power_backing"
+        textureFile = "gfx/interface/goals/focus_SWE_great_power_backing.dds"
+    }
+	spriteType = {
+        name = "GFX_focus_SWE_flag"
+        textureFile = "gfx/interface/goals/focus_SWE_flag.dds"
     }
 }

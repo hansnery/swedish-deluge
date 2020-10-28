@@ -1,3 +1,12 @@
+### search_filters = {FOCUS_FILTER_POLITICAL}
+### search_filters = {FOCUS_FILTER_RESEARCH}
+### search_filters = {FOCUS_FILTER_INDUSTRY}
+### search_filters = {FOCUS_FILTER_STABILITY}
+### search_filters = {FOCUS_FILTER_WAR_SUPPORT}
+### search_filters = {FOCUS_FILTER_MANPOWER}
+### search_filters = {FOCUS_FILTER_ANNEXATION}
+### search_filters = {FOCUS_FILTER_USA_CONGRESS}
+
 focus_tree = {
 	id = swedish_focus
 
@@ -15,15 +24,17 @@ focus_tree = {
 	continuous_focus_position = { x = 50 y = 1500 }
 
 	focus = {
-		id = SWE_first
-		icon = GFX_focus_generic_support_the_left_right
-		# mutually_exclusive = { focus = GRE_the_kings_government }
+		id = SWE_remember_the_courtyard_crisis
+		icon = GFX_focus_SWE_power_to_the_king
 		available = {
 			
 		}
-		x = 5
+		x = 8
 		y = 0
+		# mutually_exclusive = { focus = GRE_the_kings_government }
+		
 		cost = 10
+		
 		ai_will_do = {
 			base = 0
 			modifier = { 
@@ -37,7 +48,1400 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			add_political_power = 120
+			country_event = { id = sd_sweden.1 hours = 6 }
+		}
+	}
+	
+	focus = {
+		id = SWE_exploit_the_system
+		icon = GFX_goal_generic_dangerous_deal
+		available = {
+			
+		}
+		x = 1
+		y = 1
+		prerequisite = { focus = SWE_remember_the_courtyard_crisis }
+		mutually_exclusive = { focus = SWE_align_the_first_chamber }
+		relative_position_id = SWE_remember_the_courtyard_crisis
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = SWE_party_whip
+		}
+	}
+	
+	focus = {
+		id = SWE_align_the_first_chamber
+		icon = GFX_focus_generic_strike_at_democracy1
+		available = {
+			
+		}
+		x = 3
+		y = 1
+		prerequisite = { focus = SWE_remember_the_courtyard_crisis }
+		mutually_exclusive = { focus = SWE_exploit_the_system }
+		relative_position_id = SWE_remember_the_courtyard_crisis
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = SWE_loyal_aristocrat
+		}
+	}
+	
+	focus = {
+		id = SWE_commission_a_loyal_prime_minister
+		icon = GFX_focus_generic_strike_at_democracy2
+		available = {
+			has_country_leader = { name = "Fallen Government" ruling_only = yes }
+		}
+		x = 1
+		y = 1
+		prerequisite = { focus = SWE_exploit_the_system focus = SWE_align_the_first_chamber }
+		relative_position_id = SWE_exploit_the_system
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			create_country_leader = {
+				name = "Hjalmar Hammarskjöld"
+				desc = "POLITICS_HJALMAR_HAMMARSKJOLD_DESC"
+				picture = "Portrait_Hjalmar_Hammarskjold.dds"
+				expire = "1965.1.1"
+				ideology = conservatism
+				traits = {
+					stubborn_conservative
+				}
+			}
+			add_political_power = 150
+		}
+	}
+	
+	focus = {
+		id = SWE_rescind_the_policy_of_1812
+		icon = GFX_focus_hol_war_on_pacifism
+		available = {
+			OR = {
+				NOT = { has_government = democratic }
+				riksdag_medium_support_trigger = yes
+			}
+		}
+		bypass = { NOT = { has_idea = neutrality_idea } }
+		x = -6
+		y = 1
+		prerequisite = { focus = SWE_remember_the_courtyard_crisis }
+		relative_position_id = SWE_remember_the_courtyard_crisis
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			remove_ideas = neutrality_idea
+			SWE_second_chamber_small_opposition = yes
+		}
+	}
+	
+	focus = {
+		id = SWE_give_SOV_preferential_treatment
+		icon = GFX_focus_chi_mission_to_the_soviet_union
+		available = {
+			
+		}
+		x = -2
+		y = 1
+		prerequisite = { focus = SWE_rescind_the_policy_of_1812 }
+		mutually_exclusive = { focus = SWE_give_ENG_preferential_treatment }
+		mutually_exclusive = { focus = SWE_give_GER_preferential_treatment }
+		relative_position_id = SWE_rescind_the_policy_of_1812
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			every_country_with_original_tag = {
+				original_tag_to_check = SOV
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = GRE_strategic_partners
+				}
+				reverse_add_opinion_modifier = {
+					target = ROOT
+					modifier = GRE_strategic_partners
+				}
+			}
+			every_country_with_original_tag = {
+				original_tag_to_check = ENG
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = GRE_strategic_enemy
+				}
+			}
+			every_country_with_original_tag = {
+				original_tag_to_check = GER
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = GRE_strategic_enemy
+				}
+			}
+			SWE_first_chamber_medium_opposition = yes
+			SWE_second_chamber_small_opposition = yes
+		}
+	}
+	
+	focus = {
+		id = SWE_give_ENG_preferential_treatment
+		icon = GFX_focus_chi_british_cooperation
+		available = {
+			
+		}
+		x = 0
+		y = 1
+		prerequisite = { focus = SWE_rescind_the_policy_of_1812 }
+		mutually_exclusive = { focus = SWE_give_SOV_preferential_treatment }
+		mutually_exclusive = { focus = SWE_give_GER_preferential_treatment }
+		relative_position_id = SWE_rescind_the_policy_of_1812
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			every_country_with_original_tag = {
+				original_tag_to_check = ENG
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = GRE_strategic_partners
+				}
+				reverse_add_opinion_modifier = {
+					target = ROOT
+					modifier = GRE_strategic_partners
+				}
+			}
+			every_country_with_original_tag = {
+				original_tag_to_check = GER
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = GRE_strategic_enemy
+				}
+			}
+			every_country_with_original_tag = {
+				original_tag_to_check = SOV
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = GRE_strategic_enemy
+				}
+			}
+			SWE_first_chamber_small_opposition = yes
+			SWE_second_chamber_medium_opposition = yes
+		}
+	}
+	
+	focus = {
+		id = SWE_give_GER_preferential_treatment
+		icon = GFX_focus_chi_mission_to_germany
+		available = {
+			
+		}
+		x = 2
+		y = 1
+		prerequisite = { focus = SWE_rescind_the_policy_of_1812 }
+		mutually_exclusive = { focus = SWE_give_SOV_preferential_treatment }
+		mutually_exclusive = { focus = SWE_give_ENG_preferential_treatment }
+		relative_position_id = SWE_rescind_the_policy_of_1812
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			every_country_with_original_tag = {
+				original_tag_to_check = GER
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = GRE_strategic_partners
+				}
+				reverse_add_opinion_modifier = {
+					target = ROOT
+					modifier = GRE_strategic_partners
+				}
+			}
+			every_country_with_original_tag = {
+				original_tag_to_check = SOV
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = GRE_strategic_enemy
+				}
+			}
+			every_country_with_original_tag = {
+				original_tag_to_check = ENG
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = GRE_strategic_enemy
+				}
+			}
+			SWE_second_chamber_large_opposition = yes
+		}
+	}
+	
+	focus = {
+		id = SWE_exclusive_iron_exports
+		icon = GFX_focus_SWE_exclusive_iron_exports
+		available = {
+			
+		}
+		x = 0
+		y = 1
+		prerequisite = { focus = SWE_give_SOV_preferential_treatment focus = SWE_give_ENG_preferential_treatment focus = SWE_give_GER_preferential_treatment }
+		relative_position_id = SWE_give_ENG_preferential_treatment
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			if = {
+				limit = { has_completed_focus = SWE_give_SOV_preferential_treatment }
+				every_country_with_original_tag = {
+					original_tag_to_check = SOV
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strong_trading_ties
+					}
+					add_popularity = {
+						ideology = communism
+						popularity = 0.1
+					}
+				}
+				add_ideas = SWE_exclusive_iron_exports
+				SWE_second_chamber_small_opposition = yes
+			}
+			if = {
+				limit = { has_completed_focus = SWE_give_ENG_preferential_treatment }
+				every_country_with_original_tag = {
+					original_tag_to_check = ENG
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strong_trading_ties
+					}
+					add_popularity = {
+						ideology = democratic
+						popularity = 0.1
+					}
+				}
+				add_ideas = SWE_exclusive_iron_exports
+				SWE_second_chamber_small_opposition = yes
+			}
+			if = {
+				limit = { has_completed_focus = SWE_give_GER_preferential_treatment }
+				every_country_with_original_tag = {
+					original_tag_to_check = GER
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strong_trading_ties
+					}
+					add_popularity = {
+						ideology = fascism
+						popularity = 0.1
+					}
+				}
+				add_ideas = SWE_exclusive_iron_exports
+				SWE_second_chamber_small_opposition = yes
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_completed_focus = SWE_give_SOV_preferential_treatment
+						has_completed_focus = SWE_give_ENG_preferential_treatment
+						has_completed_focus = SWE_give_GER_preferential_treatment
+					}
+				}
+				custom_effect_tooltip = depends_on_who_sweden_prefers
+			}
+		}
+	}
+	
+	focus = {
+		id = SWE_give_military_access
+		icon = GFX_focus_prc_infiltration
+		available = {
+			
+		}
+		x = 0
+		y = 1
+		prerequisite = { focus = SWE_exclusive_iron_exports }
+		relative_position_id = SWE_exclusive_iron_exports
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			if = {
+				limit = { has_completed_focus = SWE_give_SOV_preferential_treatment }
+				give_military_access = SOV
+				add_popularity = {
+					ideology = communism
+					popularity = 0.1
+				}
+				SWE_second_chamber_medium_opposition = yes
+			}
+			if = {
+				limit = { has_completed_focus = SWE_give_ENG_preferential_treatment }
+				give_military_access = ENG
+				add_popularity = {
+					ideology = democratic
+					popularity = 0.1
+				}
+				SWE_second_chamber_medium_opposition = yes
+			}
+			if = {
+				limit = { has_completed_focus = SWE_give_GER_preferential_treatment }
+				give_military_access = GER
+				add_popularity = {
+					ideology = fascism
+					popularity = 0.1
+				}
+				SWE_second_chamber_medium_opposition = yes
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_completed_focus = SWE_give_SOV_preferential_treatment
+						has_completed_focus = SWE_give_ENG_preferential_treatment
+						has_completed_focus = SWE_give_GER_preferential_treatment
+					}
+				}
+				custom_effect_tooltip = depends_on_who_sweden_prefers
+			}
+		}
+	}
+	
+	focus = {
+		id = SWE_sign_non_aggression_pact
+		icon = GFX_goal_generic_improve_relations
+		available = {
+			
+		}
+		x = -2
+		y = 1
+		prerequisite = { focus = SWE_give_military_access }
+		mutually_exclusive = { focus = SWE_great_power_backing }
+		relative_position_id = SWE_give_military_access
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			if = {
+				limit = { has_completed_focus = SWE_give_SOV_preferential_treatment }
+				diplomatic_relation = {
+					country = SOV
+					relation = non_aggression_pact
+					active = yes
+				}
+				add_political_power = 120
+			}
+			if = {
+				limit = { has_completed_focus = SWE_give_ENG_preferential_treatment }
+				diplomatic_relation = {
+					country = ENG
+					relation = non_aggression_pact
+					active = yes
+				}
+				add_political_power = 120
+			}
+			if = {
+				limit = { has_completed_focus = SWE_give_GER_preferential_treatment }
+				give_military_access = GER
+				diplomatic_relation = {
+					country = GER
+					relation = non_aggression_pact
+					active = yes
+				}
+				add_political_power = 120
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_completed_focus = SWE_give_SOV_preferential_treatment
+						has_completed_focus = SWE_give_ENG_preferential_treatment
+						has_completed_focus = SWE_give_GER_preferential_treatment
+					}
+				}
+				custom_effect_tooltip = depends_on_who_sweden_prefers
+			}
+		}
+	}
+	
+	focus = {
+		id = SWE_great_power_backing
+		icon = GFX_focus_SWE_great_power_backing
+		available = {
+			
+		}
+		x = 2
+		y = 1
+		prerequisite = { focus = SWE_give_military_access }
+		mutually_exclusive = { focus = SWE_sign_non_aggression_pact }
+		relative_position_id = SWE_give_military_access
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			if = {
+				limit = { has_completed_focus = SWE_give_SOV_preferential_treatment }
+				SOV = {
+					diplomatic_relation = {
+						country = ROOT
+						relation = guarantee
+						active = yes
+					}
+				}
+				add_stability = 0.1
+			}
+			if = {
+				limit = { has_completed_focus = SWE_give_ENG_preferential_treatment }
+				ENG = {
+					diplomatic_relation = {
+						country = ROOT
+						relation = guarantee
+						active = yes
+					}
+				}
+				add_stability = 0.1				
+			}
+			if = {
+				limit = { has_completed_focus = SWE_give_GER_preferential_treatment }
+				GER = {
+					diplomatic_relation = {
+						country = ROOT
+						relation = guarantee
+						active = yes
+					}
+				}
+				add_stability = 0.1
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_completed_focus = SWE_give_SOV_preferential_treatment
+						has_completed_focus = SWE_give_ENG_preferential_treatment
+						has_completed_focus = SWE_give_GER_preferential_treatment
+					}
+				}
+				custom_effect_tooltip = depends_on_who_sweden_prefers
+			}
+		}
+	}
+	
+	focus = {
+		id = SWE_join_alliance
+		icon = GFX_goal_generic_military_deal
+		available = {
+			OR = {
+				NOT = { has_government = democratic }
+				riksdag_high_support_trigger = yes
+			}
+		}
+		x = 0
+		y = 1
+		prerequisite = { focus = SWE_great_power_backing }
+		mutually_exclusive = { focus = SWE_stormaktstiden }
+		relative_position_id = SWE_great_power_backing
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			if = {
+				limit = { has_completed_focus = SWE_give_SOV_preferential_treatment }
+				SOV = { country_event = { id  = generic.2 days = 7 } }				
+			}
+			if = {
+				limit = { has_completed_focus = SWE_give_ENG_preferential_treatment }
+				ENG = { country_event = { id  = generic.2 days = 7 } }				
+			}
+			if = {
+				limit = { has_completed_focus = SWE_give_GER_preferential_treatment }
+				GER = { country_event = { id  = generic.2 days = 7 } }
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_completed_focus = SWE_give_SOV_preferential_treatment
+						has_completed_focus = SWE_give_ENG_preferential_treatment
+						has_completed_focus = SWE_give_GER_preferential_treatment
+					}
+				}
+				custom_effect_tooltip = depends_on_who_sweden_prefers
+			}
+		}
+	}
+	
+	focus = {
+		id = SWE_offensive_realism
+		icon = GFX_goal_generic_territory_or_war
+		available = {
+			OR = {
+				NOT = { has_government = democratic }
+				riksdag_low_support_trigger = yes
+			}
+		}
+		x = 5
+		y = 1
+		prerequisite = { focus = SWE_rescind_the_policy_of_1812 }
+		relative_position_id = SWE_rescind_the_policy_of_1812
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = offensive_realism
+			set_rule = { can_send_volunteers = yes }
+		}
+	}
+	
+	focus = {
+		id = SWE_royal_institute_of_technology
+		icon = GFX_focus_research
+		available = {
+			
+		}
+		x = -1
+		y = 1
+		prerequisite = { focus = SWE_offensive_realism }
+		relative_position_id = SWE_offensive_realism
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	
+	focus = {
+		id = SWE_reaktor_1
+		icon = GFX_focus_wonderweapons
+		available = {
+			
+		}
+		x = 0
+		y = 1
+		prerequisite = { focus = SWE_royal_institute_of_technology }
+		relative_position_id = SWE_royal_institute_of_technology
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1.0
+				uses = 1
+				category = nuclear
+			}
+		}
+	}
+	
+	focus = {
+		id = SWE_stormaktstiden
+		icon = GFX_focus_SWE_flag
+		available = {
+			OR = {
+				NOT = { has_government = democratic }
+				riksdag_high_support_trigger = yes
+			}
+		}
+		x = 0
+		y = 4
+		prerequisite = { focus = SWE_offensive_realism }
+		mutually_exclusive = { focus = SWE_join_alliance }
+		relative_position_id = SWE_offensive_realism
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			set_rule = { can_create_factions = yes }
+			create_faction = SWE_northern_lights
+			# every_country = {
+				# limit = {
+					# AND = {
+						# OR = {
+							# original_tag = NOR
+							# original_tag = FIN
+							# original_tag = DEN
+							# original_tag = EST
+							# original_tag = LAT
+							# original_tag = LIT
+							# original_tag = POL
+						# }
+						# has_opinion_modifier = TUR_assertive_regional_defender
+					# }
+				# }
+				# country_event = { id = bftb_turkey.41 }
+			# }
+		}
+	}
+	
+	focus = {
+		id = SWE_amend_the_great_discord
+		icon = GFX_focus_SWE_amend_the_great_discord
+		available = {
+			
+		}
+		x = -1
+		y = 1
+		prerequisite = { focus = SWE_restore_the_royal_council }
+		prerequisite = { focus = SWE_stormaktstiden focus = SWE_join_alliance }
+		relative_position_id = SWE_stormaktstiden
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = { id = sd_sweden.6 hours = 6 }
+		}
+	}
+	
+	focus = {
+		id = SWE_subdue_norway
+		icon = GFX_focus_SWE_subdue_norway #GFX_focus_SWE_reclaim_norway
+		available = {
+			
+		}
+		x = 1
+		y = 1
+		prerequisite = { focus = SWE_restore_the_royal_council }
+		prerequisite = { focus = SWE_stormaktstiden focus = SWE_join_alliance }
+		relative_position_id = SWE_stormaktstiden
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			country_event = { id = sd_sweden.2 hours = 6 }
+		}
+	}
+	
+	focus = {
+		id = SWE_denounce_the_treaty_of_nystad
+		icon = GFX_focus_renounce_the_treaty_of_trianon
+		available = {
+			
+		}
+		x = 1
+		y = 1
+		prerequisite = { focus = SWE_amend_the_great_discord }
+		prerequisite = { focus = SWE_subdue_norway }
+		relative_position_id = SWE_amend_the_great_discord
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			every_state = {
+				limit = { is_core_of = EST }
+				ROOT = {
+					add_state_claim = PREV
+				}
+			}
+			every_state = {
+				limit = { is_core_of = LAT }
+				ROOT = {
+					add_state_claim = PREV
+				}
+			}
+			add_state_claim = 208
+			add_state_claim = 195
+		}
+	}
+	
+	focus = {
+		id = SWE_reform_swedish_empire
+		icon = GFX_focus_SWE_empire
+		available = {
+			
+		}
+		x = 0
+		y = 1
+		prerequisite = { focus = SWE_denounce_the_treaty_of_nystad }
+		relative_position_id = SWE_denounce_the_treaty_of_nystad
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = SWE_the_swedish_deluge
+		icon = GFX_focus_SWE_deluge
+		available = {
+			
+		}
+		x = 0
+		y = 1
+		prerequisite = { focus = SWE_reform_swedish_empire }
+		relative_position_id = SWE_reform_swedish_empire
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			
+		}
+	}
+	
+	focus = {
+		id = SWE_favor_business_ownership
+		icon = GFX_focus_eng_concessions_to_the_trade_unions
+		available = {
+			
+		}
+		x = 6
+		y = 1
+		prerequisite = { focus = SWE_remember_the_courtyard_crisis }
+		relative_position_id = SWE_remember_the_courtyard_crisis
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		
+		complete_tooltip = {
+			every_owned_state = {
+				limit = { has_state_flag = SWE_nationalized_industry_flag }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}			
+		}
+
+		completion_reward = {
+			custom_effect_tooltip = available_political_advisor
+			show_ideas_tooltip = SWE_sven_olov_lindholm
+			add_stability = -0.12
+			add_popularity = {
+				ideology = democratic
+				popularity = -0.06
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = SWE
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = SWE_nationalized_industry_flag
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = SWE
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = SWE_nationalized_industry_flag
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = SWE
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = SWE_nationalized_industry_flag
+			}
+		}
+	}
+	
+	focus = {
+		id = SWE_reinforce_class_struggle_notion
+		icon = GFX_focus_spr_class_war
+		available = {
+			
+		}
+		x = -1
+		y = 1
+		prerequisite = { focus = SWE_favor_business_ownership }
+		mutually_exclusive = { focus = SWE_reinforce_class_solidarity_notion }
+		relative_position_id = SWE_favor_business_ownership
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_timed_idea = {
+				idea = class_struggle_rekindled
+				days = 365
+			}
+			SWE_first_chamber_large_opposition = yes
+		}
+	}
+	
+	focus = {
+		id = SWE_the_second_great_reduction
+		icon = GFX_focus_rom_parties_end
+		available = {
+			OR = {
+				riksdag_medium_support_trigger = yes
+				communism > 0.5
+			}
+		}
+		x = 0
+		y = 1
+		prerequisite = { focus = SWE_reinforce_class_struggle_notion }
+		mutually_exclusive = { focus = SWE_restore_old_privileges }
+		relative_position_id = SWE_reinforce_class_struggle_notion
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = SWE_nationalized_industry
+			SWE_first_chamber_large_opposition = yes
+		}
+	}
+	
+	focus = {
+		id = SWE_state_ownership_of_means_of_production
+		icon = GFX_focus_spr_unify_the_london_bureau
+		available = {
+			OR = {
+				riksdag_high_support_trigger = yes
+				communism > 0.7
+			}
+		}
+		x = 0
+		y = 1
+		prerequisite = { focus = SWE_the_second_great_reduction }
+		mutually_exclusive = { focus = SWE_authoritarian_corporatism }
+		relative_position_id = SWE_the_second_great_reduction
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			add_ideas = SWE_state_ownership_of_production
+			SWE_first_chamber_large_opposition = yes
+		}
+	}
+	
+	focus = {
+		id = SWE_reinforce_class_solidarity_notion
+		icon = GFX_focus_generic_concessions
+		available = {
+			
+		}
+		x = 1
+		y = 1
+		prerequisite = { focus = SWE_favor_business_ownership }
+		mutually_exclusive = { focus = SWE_reinforce_class_struggle_notion }
+		relative_position_id = SWE_favor_business_ownership
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_timed_idea = {
+				idea = class_solidarity
+				days = 365
+			}
+			SWE_second_chamber_large_opposition = yes
+		}
+	}
+	
+	focus = {
+		id = SWE_restore_old_privileges
+		icon = GFX_focus_generic_royal_wedding
+		available = {
+			OR = {
+				riksdag_medium_support_trigger = yes
+				fascism > 0.5
+			}
+		}
+		x = 0
+		y = 1
+		prerequisite = { focus = SWE_reinforce_class_solidarity_notion }
+		mutually_exclusive = { focus = SWE_the_second_great_reduction }
+		relative_position_id = SWE_reinforce_class_solidarity_notion
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = SWE_loyal_aristocracy
+			SWE_second_chamber_large_opposition = yes
+		}
+	}
+	
+	focus = {
+		id = SWE_authoritarian_corporatism
+		icon = GFX_goal_support_fascism
+		available = {
+			OR = {
+				riksdag_high_support_trigger = yes
+				fascism > 0.7
+			}
+		}
+		x = 0
+		y = 1
+		prerequisite = { focus = SWE_restore_old_privileges }
+		mutually_exclusive = { focus = SWE_state_ownership_of_means_of_production }
+		relative_position_id = SWE_restore_old_privileges
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = SWE_authoritarian_corporatism_idea
+			SWE_second_chamber_large_opposition = yes
+		}
+	}
+	
+	focus = {
+		id = SWE_dissolve_the_riksdag
+		icon = GFX_focus_generic_monarchy_1
+		available = {
+			OR = {
+				NOT = { has_government = democratic }
+				riksdag_high_support_trigger = yes
+			}
+		}
+		x = 1
+		y = 1
+		prerequisite = { focus = SWE_state_ownership_of_means_of_production focus = SWE_authoritarian_corporatism }
+		relative_position_id = SWE_state_ownership_of_means_of_production
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		
+		completion_reward = {
+			SWE_return_majority = yes
+		}
+	}
+	
+	focus = {
+		id = SWE_restore_the_royal_council
+		icon = GFX_focus_rom_royal_dictatorship
+		available = {
+			
+		}
+		x = -4
+		y = 1
+		prerequisite = { focus = SWE_commission_a_loyal_prime_minister }
+		prerequisite = { focus = SWE_dissolve_the_riksdag }
+		relative_position_id = SWE_dissolve_the_riksdag
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			
 		}
 	}
 }

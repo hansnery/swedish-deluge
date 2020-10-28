@@ -1,0 +1,36 @@
+spriteTypes = {
+	# News Events
+	
+	spriteType = {
+		name = "GFX_news_event_sweden_war_1"
+		texturefile = "gfx/event_pictures/news_event_sweden_war_1.dds"
+	}
+	# Report Events
+	
+	spriteType = {
+		name = "GFX_report_event_sweden_war_2"
+		texturefile = "gfx/event_pictures/report_event_sweden_war_2.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_sweden_finland_map"
+		texturefile = "gfx/event_pictures/report_event_sweden_finland_map.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_sweden_war_1"
+		texturefile = "gfx/event_pictures/report_event_sweden_war_1.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_sweden"
+		texturefile = "gfx/event_pictures/report_event_sweden.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_swedish_flag"
+		texturefile = "gfx/event_pictures/report_event_swedish_flag.dds"
+	}
+	spriteType = {
+		name = "GFX_report_event_courtyard_speech"
+		texturefile = "gfx/event_pictures/report_event_courtyard_speech.dds"
+	}
+}
+	
+	

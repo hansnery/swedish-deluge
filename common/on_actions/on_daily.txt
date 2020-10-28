@@ -1,0 +1,19 @@
+on_actions = {
+	
+	on_daily = {
+		effect = {
+			if = {
+				limit = {
+					has_idea_with_trait = party_whip
+				}
+				add_to_variable = { representatives_support = 0.1 }
+			}
+			if = {
+				limit = {
+					has_idea_with_trait = loyal_aristocrat
+				}
+				add_to_variable = { senators_support = 0.035 }
+			}
+		}
+    }
+}

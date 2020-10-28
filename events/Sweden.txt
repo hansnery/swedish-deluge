@@ -1,0 +1,412 @@
+﻿###########################
+# Swedish Events
+###########################
+
+add_namespace = sd_sweden
+
+# Intervention Crisis Gustaf V - Government falls
+country_event = {
+	id = sd_sweden.1
+	title = sd_sweden.1.t
+	desc = sd_sweden.1.d
+	picture = GFX_report_event_courtyard_speech
+
+	is_triggered_only = yes
+	
+	# The King will not give up the right to communicate freely to the Swedish people.
+	option = {
+		name = sd_sweden.1.a
+		swap_ideas = {
+			remove_idea = gustaf_v
+			add_idea = interventionist_gustaf_v
+		}
+		add_stability = -0.15
+		add_political_power = -150
+		create_country_leader = {
+			name = "Fallen Government"
+			desc = "POLITICS_FALLEN_GOVERNMENT_DESC"
+			picture = "portrait_swe_fallen_government.dds"
+			expire = "1965.1.1"
+			ideology = conservatism
+			traits = {
+				cabinet_crisis
+			}
+		}
+		SWE_second_chamber_large_opposition = yes
+	}
+
+	# Promise to keep Sweden out of any factions.
+	option = {
+		name = sd_sweden.1.b
+		ai_chance = {
+			factor = 0
+		}
+		custom_effect_tooltip = SWE_promised_neutrality_tt
+		create_country_leader = {
+			name = "Fallen Government"
+			desc = "POLITICS_FALLEN_GOVERNMENT_DESC"
+			picture = "portrait_swe_fallen_government.dds"
+			expire = "1965.1.1"
+			ideology = conservatism
+			traits = {
+				cabinet_crisis
+			}
+		}
+		SWE_second_chamber_medium_opposition = yes
+		set_country_flag = SWE_king_promises_neutrality
+	}
+}
+
+# Send An Ultimatum to Norway
+country_event = {
+	id = sd_sweden.2
+	title = sd_sweden.2.t
+	desc = sd_sweden.2.d
+	picture = GFX_report_event_sweden
+
+	is_triggered_only = yes
+	
+	# Demand Trøndelag.
+	option = {
+		name = sd_sweden.2.a
+		trigger = { NOR = { has_full_control_of_state = 143 } }
+		add_state_claim = 143
+		set_global_flag = sweden_demanded_trondelag
+		NOR = { country_event { id = sd_sweden.3 hours = 6 } }
+	}
+
+	# Demand Trøndelag and Nord-Norge.
+	option = {
+		name = sd_sweden.2.b
+		trigger = { NOR = { has_full_control_of_state = 143 has_full_control_of_state = 144 } }
+		ai_chance = {
+			factor = 0
+		}
+		add_state_claim = 143
+		add_state_claim = 144
+		set_global_flag = sweden_demanded_trondelag_and_nord_norge
+		NOR = { country_event { id = sd_sweden.3 hours = 6 } }
+	}
+	
+	# Gustaf V shall be King of all Norway.
+	option = {
+		name = sd_sweden.2.c
+		ai_chance = {
+			factor = 0
+		}
+		every_state = {
+			limit = { is_core_of = NOR }
+			ROOT = {
+				add_state_claim = PREV
+			}
+		}
+		set_global_flag = sweden_demanded_all_norway
+		NOR = { country_event { id = sd_sweden.3 hours = 6 } }
+	}
+}
+
+# Sweden Sends An Ultimatum (Norway)
+country_event = {
+	id = sd_sweden.3
+	title = sd_sweden.3.t
+	desc = sd_sweden.3.d
+	picture = GFX_report_event_sweden_war_1
+
+	is_triggered_only = yes
+	
+	# What a preposterous demand!
+	option = {
+		name = sd_sweden.3.a
+		ai_chance = {
+			factor = 30
+		}
+		SWE = { country_event = { id = sd_sweden.5 hours = 6 } }
+	}
+	
+	# Cede Trøndelag.
+	option = {
+		name = sd_sweden.3.b
+		trigger = { has_global_flag = sweden_demanded_trondelag }
+		ai_chance = {
+			factor = 100
+			modifier = {
+				NOT = {
+					SWE = { is_in_faction_with = ENG }
+					SWE = { is_in_faction_with = GER }
+					SWE = { is_in_faction_with = SOV }
+				}
+				factor = 0.6
+			}
+			modifier = {
+				ROOT = { is_in_faction = yes }
+				factor = 0
+			}
+		}
+		add_stability = -0.15
+		add_political_power = -150
+		SWE = { country_event = { id = sd_sweden.4 hours = 6 } }
+	}
+	
+	# Cede Trøndelag and Nord-Norge.
+	option = {
+		name = sd_sweden.3.c
+		trigger = { has_global_flag = sweden_demanded_trondelag_and_nord_norge }
+		ai_chance = {
+			factor = 90
+			modifier = {
+				NOT = {
+					SWE = { is_in_faction_with = ENG }
+					SWE = { is_in_faction_with = GER }
+					SWE = { is_in_faction_with = SOV }
+				}
+				factor = 0.6
+			}
+			modifier = {
+				ROOT = { is_in_faction = yes }
+				factor = 0
+			}
+		}
+		add_stability = -0.3
+		add_political_power = -300
+		SWE = { country_event = { id = sd_sweden.4 hours = 6 } }
+	}
+	
+	# Bend the knee.
+	option = {
+		name = sd_sweden.3.e
+		trigger = { has_global_flag = sweden_demanded_all_norway }
+		ai_chance = {
+			factor = 80
+			modifier = {
+				NOT = { SWE = { is_in_faction_with = GER } }
+				factor = 0.6
+			}
+			modifier = {
+				ROOT = { is_in_faction = yes }
+				factor = 0
+			}
+		}
+		SWE = { country_event = { id = sd_sweden.4 hours = 6 } }
+	}
+}
+
+# Norway Complies
+country_event = {
+	id = sd_sweden.4
+	title = sd_sweden.4.t
+	desc = sd_sweden.4.d
+	picture = GFX_report_event_swedish_flag
+
+	is_triggered_only = yes
+	
+	# It is a great day for Sweden!
+	option = {
+		name = sd_sweden.4.a
+		if = {
+			limit = { has_global_flag = sweden_demanded_trondelag }
+			SWE = { transfer_state = 143 }
+			add_stability = 0.05
+			add_political_power = 50
+		}
+		else_if = {
+			limit = { has_global_flag = sweden_demanded_trondelag_and_nord_norge }
+			SWE = {
+				transfer_state = 143
+				transfer_state = 144
+			}
+			add_stability = 0.1
+			add_political_power = 100
+		}
+		else_if = {
+			limit = { has_global_flag = sweden_demanded_all_norway }
+			annex_country = {
+				target = NOR
+				# transfer_troops = yes
+			}
+			add_stability = 0.25
+			add_political_power = 250
+		}
+	}
+}
+
+# Norway Refuses
+country_event = {
+	id = sd_sweden.5
+	title = sd_sweden.5.t
+	desc = sd_sweden.5.d
+	picture = GFX_report_event_sweden_war_1
+
+	is_triggered_only = yes
+	
+	# With God's help! - 'Med Guds hjälp!'
+	option = {
+		name = sd_sweden.5.a
+		declare_war_on = {
+			target = NOR
+			type = annex_everything
+		}
+		hidden_effect = { news_event = { id = sd_news.1 days = 1 } }
+	}
+}
+
+# Send An Ultimatum to Finland
+country_event = {
+	id = sd_sweden.6
+	title = sd_sweden.6.t
+	desc = sd_sweden.6.d
+	picture = GFX_report_event_sweden_finland_map
+
+	is_triggered_only = yes
+	
+	# Demand direct rule.
+	option = {
+		name = sd_sweden.6.a
+		set_global_flag = sweden_demanded_finland_annexation
+		every_state = {
+			limit = { is_core_of = FIN }
+			ROOT = {
+				add_state_claim = PREV
+			}
+		}
+		FIN = { country_event { id = sd_sweden.7 hours = 6 } }
+	}
+
+	# Demand their return to Grand Principality status.
+	option = {
+		name = sd_sweden.6.b
+		ai_chance = {
+			factor = 0
+		}
+		set_global_flag = sweden_demanded_finland_become_a_puppet
+		FIN = { country_event { id = sd_sweden.7 hours = 6 } }
+	}
+}
+
+# Sweden Sends an Ultimatum (Finland)
+country_event = {
+	id = sd_sweden.7
+	title = sd_sweden.3.t
+	desc = sd_sweden.7.d
+	picture = GFX_report_event_sweden_war_2
+
+	is_triggered_only = yes
+	
+	# 'Hakkapeliitta!' - Cut them down!
+	option = {
+		name = sd_sweden.7.a
+		ai_chance = {
+			factor = 30
+		}
+		SWE = { country_event = { id = sd_sweden.9 hours = 6 } }
+	}
+	
+	# We have better odds against the Soviet Union if we stay together with Sweden.
+	option = {
+		name = sd_sweden.7.b
+		trigger = { has_global_flag = sweden_demanded_finland_become_a_puppet }
+		ai_chance = {
+			factor = 70
+			modifier = {
+				NOT = {
+					SWE = { is_in_faction_with = ENG }
+					SWE = { is_in_faction_with = GER }
+					SWE = { is_in_faction_with = SOV }
+				}
+				factor = 0.6
+			}
+			modifier = {
+				ROOT = { is_in_faction = yes }
+				factor = 0
+			}
+		}
+		add_stability = -0.3
+		add_political_power = -300
+		SWE = { country_event = { id = sd_sweden.8 hours = 6 } }
+	}
+	
+	# We will unite with Sweden once more.
+	option = {
+		name = sd_sweden.7.c
+		trigger = { has_global_flag = sweden_demanded_finland_annexation }
+		ai_chance = {
+			factor = 60
+			modifier = {
+				NOT = {
+					SWE = { is_in_faction_with = ENG }
+					SWE = { is_in_faction_with = GER }
+					SWE = { is_in_faction_with = SOV }
+				}
+				factor = 0.6
+			}
+			modifier = {
+				ROOT = { is_in_faction = yes }
+				factor = 0
+			}
+		}
+		SWE = { country_event = { id = sd_sweden.8 hours = 6 } }
+	}
+}
+
+# Finland Complies
+country_event = {
+	id = sd_sweden.8
+	title = sd_sweden.8.t
+	desc = sd_sweden.8.d
+	picture = GFX_report_event_swedish_flag
+
+	is_triggered_only = yes
+	
+	# The Great Discord is finally amended!
+	option = {
+		name = sd_sweden.8.a
+		if = {
+			limit = { has_global_flag = sweden_demanded_finland_become_a_puppet }
+			SWE = {
+				puppet = FIN
+			}
+			FIN = {
+				set_cosmetic_tag = FIN_SWE
+			}
+			add_stability = 0.1
+			add_political_power = 100
+		}
+		else_if = {
+			limit = { has_global_flag = sweden_demanded_finland_annexation }
+			annex_country = {
+				target = FIN
+				# transfer_troops = yes
+			}
+			add_stability = 0.25
+			add_political_power = 250
+		}
+	}
+}
+
+# Finland Refuses
+country_event = {
+	id = sd_sweden.9
+	title = sd_sweden.9.t
+	desc = sd_sweden.9.d
+	picture = GFX_report_event_sweden_war_2
+
+	is_triggered_only = yes
+	
+	# With God's help! - 'Med Guds hjälp!'
+	option = {
+		name = sd_sweden.9.a
+		if = {
+			limit = { has_global_flag = sweden_demanded_finland_become_a_puppet }
+			every_state = {
+				limit = { is_core_of = FIN }
+				ROOT = {
+					add_state_claim = PREV
+				}
+			}
+		}
+		declare_war_on = {
+			target = FIN
+			type = annex_everything
+		}
+		# hidden_effect = { news_event = { id = sd_news.1 days = 1 } }
+	}
+}

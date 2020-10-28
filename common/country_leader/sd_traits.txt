@@ -1,0 +1,49 @@
+leader_traits = {
+	
+	spirit_of_gustavus_adolphus = {
+		random = no
+		army_morale_factor = 0.02
+		defensive_war_stability_factor = 0.2
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	stubborn_conservative = {
+		random = no
+		war_support_factor = 0.15
+		political_power_factor = -0.15
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	small_state_realist = {
+		random = no
+		political_power_factor = 0.1
+		foreign_subversive_activites = -0.1
+		enemy_justify_war_goal_time = 0.1
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	party_whip = {
+		random = no
+		
+		custom_modifier_tooltip = party_whip_tt
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	loyal_aristocrat = {
+		random = no
+		
+		custom_modifier_tooltip = loyal_aristocrat_tt
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

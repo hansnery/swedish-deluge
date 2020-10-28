@@ -1,0 +1,16 @@
+﻿l_english:
+ SWEDEN_DEMANDED_TRONDELAG_LOC:0 "They have demanded that we cede Trøndelag as 'compensation for unequal treaties' signed in the past. If we accept their demands [NOR.GetNameDef] will be a country torn in half with more than half of its territory as an exclave."
+ SWEDEN_DEMANDED_TRONDELAG_AND_NORD_NORGE_LOC:0 "They have demanded that we cede Trøndelag and Nord-Norge as 'compensation for unequal treaties' signed in the past. If we accept their demands [NOR.GetNameDef] will be giving more than half of its territory away."
+ SWEDEN_DEMANDED_ALL_NORWAY:0 "They have demanded no more than all of Norway! They claimed that the late King Oscar II was coerced into renouncing his throne but clearly this is just a shameful pretext to justify their imperialism."
+ SWEDEN_GAINED_TRONDELAG_LOC:0 "They will cede Trøndelag to us as it was in the Treaty of Roskilde."
+ SWEDEN_GAINED_TRONDELAG_AND_NORD_NORGE_LOC:0 "They will cede Trøndelag to us as it was in the Treaty of Roskilde and we will also take Nord-Norge for good measure."
+ SWEDEN_GAINED_ALL_NORWAY:0 "They will be fully incorporated into [SWE.GetNameDef] as it was before 1905 and the resolution imposed by the usurpers of the Storting."
+ SWEDEN_EXCLUSIVE_IRON_EXPORTS:0 "Exclusive Iron Exports"
+ SWEDEN_EXCLUSIVE_IRON_EXPORTS_TO_THE_SOVIET_UNION:0 "Exclusive Iron Exports to [SOV.GetNameDef]"
+ SWEDEN_EXCLUSIVE_IRON_EXPORTS_TO_THE_UK:0 "Exclusive Iron Exports to [ENG.GetNameDef]"
+ SWEDEN_EXCLUSIVE_IRON_EXPORTS_TO_GERMANY:0 "Exclusive Iron Exports to [GER.GetNameDef]"
+ SWEDEN_DEMANDED_FINLAND_ANNEXATION_LOC:0 "As if we hadn't earned our independence, they had the audacity to demand the complete incorporation of [FIN.GetNameDef] into [SWE.GetNameDef]. If we don't fear [SOV.GetNameDef], why should we fear them?"
+ SWEDEN_DEMANDED_FINLAND_BECOMES_A_PUPPET_LOC:0 "They have demanded that [FIN.GetNameDef] return to the status of Grand Principality as it was before our country was occupied by the Tsar. Though we will retain some form of autonomy, we will lose our hard-won independence. And with [SOV.GetNameDef] breathing under our necks, should we stay with the devil we know or risk facing an even more terrible foe?"
+ SWEDEN_GAINED_FINLAND_LOC:0 "[FIN.GetAdjective] counties will be represented in the Riksdag as full constituents of [SWE.GetNameDef] as part of the annexation process."
+ SWEDEN_GAINED_PUPPET_FINLAND_LOC:0 "[FIN.GetNameDef] will be reorganized as a Grand Principality and will retain the autonomy achieved under the rule of the Russian Empire in the form of the Senate of Finland and the Governor-General."
+ 

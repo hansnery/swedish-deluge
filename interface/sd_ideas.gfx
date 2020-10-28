@@ -2,8 +2,28 @@ spriteTypes = {
 
     # Must have _idea_ written in the name to work.
 	
-	# Generic
+	# Sweden
 	
+	spriteType = {
+        name = "GFX_idea_SWE_christian_gunther"
+        textureFile = "gfx/interface/ideas/idea_SWE_christian_gunther.dds"
+    }
+	spriteType = {
+        name = "GFX_idea_SWE_exclusive_iron_exports"
+        textureFile = "gfx/interface/ideas/idea_SWE_iron_exports.dds"
+    }
+	spriteType = {
+        name = "GFX_idea_SWE_nationalized_industry"
+        textureFile = "gfx/interface/ideas/idea_SWE_nationalized_industry.dds"
+    }
+	# spriteType = {
+        # name = "GFX_idea_SWE_state_ownership_of_production"
+        # textureFile = "gfx/interface/ideas/idea_SWE_state_ownership_of_production.dds"
+    # }
+	spriteType = {
+        name = "GFX_idea_offensive_realism"
+        textureFile = "gfx/interface/ideas/idea_offensive_realism.dds"
+    }
 	spriteType = {
         name = "GFX_idea_gustaf_v"
         textureFile = "gfx/interface/ideas/idea_gustaf_v.dds"
