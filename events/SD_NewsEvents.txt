@@ -63,3 +63,93 @@ news_event = {
 		trigger = { TAG = FIN }
 	}
 }
+
+# Sweden Approaches Germany
+news_event = {
+	id = sd_news.3
+	title = sd_news.3.t
+	desc = sd_news.3.d
+	picture = GFX_news_event_sweden_approaches_germany
+	
+	major = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = sd_news.3.a
+		trigger = {
+			NOT = {
+				TAG = SWE
+				TAG = GER
+			}
+		}
+	}
+	option = {
+		name = sd_news.3.b
+		trigger = { TAG = SWE }
+	}
+	option = {
+		name = sd_news.3.c
+		trigger = { TAG = GER }
+	}
+}
+
+# Sweden Approaches the United Kingdom
+news_event = {
+	id = sd_news.4
+	title = sd_news.3.t
+	desc = sd_news.3.d
+	picture = GFX_news_event_generic_sign_treaty1
+	
+	major = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = sd_news.4.a
+		trigger = {
+			NOT = {
+				TAG = SWE
+				TAG = ENG
+			}
+		}
+	}
+	option = {
+		name = sd_news.3.b
+		trigger = { TAG = SWE }
+	}
+	option = {
+		name = sd_news.4.c
+		trigger = { TAG = ENG }
+	}
+}
+
+# Sweden Approaches the Soviet Union
+news_event = {
+	id = sd_news.5
+	title = sd_news.3.t
+	desc = sd_news.3.d
+	picture = GFX_news_event_generic_sign_treaty1
+	
+	major = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = sd_news.5.a
+		trigger = {
+			NOT = {
+				TAG = SWE
+				TAG = SOV
+			}
+		}
+	}
+	option = {
+		name = sd_news.3.b
+		trigger = { TAG = SWE }
+	}
+	option = {
+		name = sd_news.5.c
+		trigger = { TAG = SOV }
+	}
+}

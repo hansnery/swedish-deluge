@@ -247,6 +247,7 @@ focus_tree = {
 			}
 			SWE_first_chamber_medium_opposition = yes
 			SWE_second_chamber_small_opposition = yes
+			ENG = {	hidden_effect = { news_event = { id = sd_news.5 days = 1 } } }
 		}
 	}
 	
@@ -306,6 +307,7 @@ focus_tree = {
 			}
 			SWE_first_chamber_small_opposition = yes
 			SWE_second_chamber_medium_opposition = yes
+			ENG = {	hidden_effect = { news_event = { id = sd_news.4 days = 1 } } }
 		}
 	}
 	
@@ -364,6 +366,7 @@ focus_tree = {
 				}
 			}
 			SWE_second_chamber_large_opposition = yes
+			GER = {	hidden_effect = { news_event = { id = sd_news.3 days = 1 } } }
 		}
 	}
 	

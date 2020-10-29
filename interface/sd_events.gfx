@@ -2,6 +2,10 @@ spriteTypes = {
 	# News Events
 	
 	spriteType = {
+		name = "GFX_news_event_sweden_approaches_germany"
+		texturefile = "gfx/event_pictures/news_event_sweden_approaches_germany.dds"
+	}
+	spriteType = {
 		name = "GFX_news_event_sweden_war_1"
 		texturefile = "gfx/event_pictures/news_event_sweden_war_1.dds"
 	}
