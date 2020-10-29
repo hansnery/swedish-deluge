@@ -1559,7 +1559,34 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			
+			set_politics = {
+				ruling_party = neutrality
+				elections_allowed = no
+			}
+			add_popularity = { 
+				ideology = neutrality
+				popularity = 0.15
+			}
+			if = {
+				limit = { has_idea = gustaf_v }
+				remove_ideas = gustaf_v
+			}
+			else_if = {
+				limit = { has_idea = interventionist_gustaf_v }
+				remove_ideas = interventionist_gustaf_v
+			}
+			create_country_leader = {
+				name = "Gustaf V"
+				desc = "POLITICS_GUSTAF_V_DESC"
+				picture = "Portrait_Gustaf_V.dds"
+				expire = "1965.1.1"
+				ideology = despotism
+				traits = {
+					spirit_of_gustavus_adolphus
+					autocratic_imperialist
+				}
+			}
+			add_political_power = 150
 		}
 	}
 	
