@@ -95,7 +95,7 @@ ideas = {
 			}
 		}
 		
-		SWE_exclusive_iron_exports = {
+		SWE_exclusive_iron_exports_idea = {
 
 			allowed = {
 				original_tag = SWE
@@ -240,6 +240,24 @@ ideas = {
 				production_factory_max_efficiency_factor = 0.1
 			} 
 		}
+		
+		SWE_swedish_deluge = {
+			
+			allowed = {
+				always = no
+			}
+			removal_cost = -1
+
+			allowed_civil_war = {
+				tag = SWE
+			}
+			
+			modifier = {
+				conscription = 0.03
+				conscription_factor = 0.25
+				army_morale_factor = 0.2
+			}
+		}
 	}
 
 	political_advisor = {
@@ -295,6 +313,34 @@ ideas = {
 				NOT = {
 					has_government = fascism
 				}
+			}
+		}
+		
+		SWE_communist_revolutionary = {
+
+			
+			allowed = {
+				original_tag = GER
+			}
+			
+			available = {
+				if = {
+					limit = { has_dlc = "Man the Guns" }	
+					NOT = { has_autonomy_state = autonomy_supervised_state }
+				}
+				has_completed_focus = SWE_favor_business_ownership
+			}
+			
+			traits = { communist_revolutionary }
+
+			do_effect = {
+				NOT = {
+					has_government = communism
+				}
+			}
+			
+			ai_will_do = {
+				factor = 0
 			}
 		}
 		

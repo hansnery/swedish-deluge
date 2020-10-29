@@ -33,3 +33,33 @@ news_event = {
 		trigger = { TAG = NOR }
 	}
 }
+
+# The Second Finnish War
+news_event = {
+	id = sd_news.2
+	title = sd_news.2.t
+	desc = sd_news.2.d
+	picture = GFX_news_event_sweden_war_2
+	
+	major = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = sd_news.2.a
+		trigger = {
+			NOT = {
+				TAG = SWE
+				TAG = FIN
+			}
+		}
+	}
+	option = {
+		name = sd_news.2.b
+		trigger = { TAG = SWE }
+	}
+	option = {
+		name = sd_news.2.c
+		trigger = { TAG = FIN }
+	}
+}

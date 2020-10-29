@@ -2,6 +2,18 @@ spriteTypes = {
 	# SWE
 	
 	spriteType = {
+        name = "GFX_focus_SWE_honor_our_ancestors"
+        textureFile = "gfx/interface/goals/focus_SWE_honor_our_ancestors.dds"
+    }
+	spriteType = {
+        name = "GFX_focus_SWE_reduce_consumer_goods"
+        textureFile = "gfx/interface/goals/focus_SWE_reduce_consumer_goods.dds"
+    }
+	spriteType = {
+        name = "GFX_focus_SWE_favor_consumer_goods"
+        textureFile = "gfx/interface/goals/focus_SWE_favor_consumer_goods.dds"
+    }
+	spriteType = {
         name = "GFX_focus_SWE_exclusive_iron_exports"
         textureFile = "gfx/interface/goals/focus_SWE_exclusive_iron_exports.dds"
     }

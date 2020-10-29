@@ -5,6 +5,10 @@ spriteTypes = {
 		name = "GFX_news_event_sweden_war_1"
 		texturefile = "gfx/event_pictures/news_event_sweden_war_1.dds"
 	}
+	spriteType = {
+		name = "GFX_news_event_sweden_war_2"
+		texturefile = "gfx/event_pictures/news_event_sweden_war_2.dds"
+	}
 	# Report Events
 	
 	spriteType = {
