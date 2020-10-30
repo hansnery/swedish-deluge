@@ -75,7 +75,7 @@ ideas = {
 			}
 		}
 		
-		offensive_realism = {
+		SWE_offensive_realism = {
 			
 			allowed = {
 				always = no
@@ -92,6 +92,42 @@ ideas = {
 			modifier = {
 				political_power_factor = 0.1
 				justify_war_goal_time = -0.25
+			}
+		}
+		
+		SWE_swedish_rearmament_idea = {
+			picture = man_five_year_plan_tank
+			
+			allowed = {
+				always = no
+			}
+			removal_cost = -1
+
+			allowed_civil_war = {
+				tag = SWE
+			}
+			
+			modifier = {
+				economy_cost_factor = -0.25
+				industrial_capacity_factory = 0.15
+			}
+		}
+		
+		SWE_varnplikt_idea = {
+			picture = generic_manpower_bonus
+			
+			allowed = {
+				always = no
+			}
+			removal_cost = -1
+
+			allowed_civil_war = {
+				tag = SWE
+			}
+			
+			modifier = {
+				mobilization_laws_cost_factor = -0.25
+				conscription_factor = 0.25
 			}
 		}
 		
@@ -320,14 +356,10 @@ ideas = {
 
 			
 			allowed = {
-				original_tag = GER
+				original_tag = SWE
 			}
 			
 			available = {
-				if = {
-					limit = { has_dlc = "Man the Guns" }	
-					NOT = { has_autonomy_state = autonomy_supervised_state }
-				}
 				has_completed_focus = SWE_favor_business_ownership
 			}
 			

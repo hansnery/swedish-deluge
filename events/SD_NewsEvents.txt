@@ -153,3 +153,49 @@ news_event = {
 		trigger = { TAG = SOV }
 	}
 }
+
+# The Rise of the Northern Lights
+news_event = {
+	id = sd_news.6
+	title = sd_news.6.t
+	desc = sd_news.6.d
+	picture = GFX_news_event_northern_lights
+	
+	major = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = sd_news.6.a
+		trigger = {
+			NOT = {	TAG = SWE }
+		}
+	}
+	option = {
+		name = sd_news.6.b
+		trigger = { TAG = SWE }
+	}
+}
+
+# The Resurgence of the Swedish Empire
+news_event = {
+	id = sd_news.7
+	title = sd_news.7.t
+	desc = sd_news.7.d
+	picture = GFX_news_event_swedish_empire
+	
+	major = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = sd_news.7.a
+		trigger = {
+			NOT = {	TAG = SWE }
+		}
+	}
+	option = {
+		name = sd_news.7.b
+		trigger = { TAG = SWE }
+	}
+}

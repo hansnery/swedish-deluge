@@ -21,8 +21,8 @@ spriteTypes = {
         textureFile = "gfx/interface/ideas/idea_SWE_nationalized_industry.dds"
     }
 	spriteType = {
-        name = "GFX_idea_offensive_realism"
-        textureFile = "gfx/interface/ideas/idea_offensive_realism.dds"
+        name = "GFX_idea_SWE_offensive_realism"
+        textureFile = "gfx/interface/ideas/idea_SWE_offensive_realism.dds"
     }
 	spriteType = {
         name = "GFX_idea_gustaf_v"

@@ -31,7 +31,6 @@ focus_tree = {
 		}
 		x = 8
 		y = 0
-		# mutually_exclusive = { focus = GRE_the_kings_government }
 		
 		cost = 10
 		
@@ -152,7 +151,7 @@ focus_tree = {
 					stubborn_conservative
 				}
 			}
-			add_political_power = 150
+			# add_political_power = 150
 		}
 	}
 	
@@ -160,10 +159,11 @@ focus_tree = {
 		id = SWE_rescind_the_policy_of_1812
 		icon = GFX_focus_hol_war_on_pacifism
 		available = {
-			OR = {
-				NOT = { has_government = democratic }
-				riksdag_medium_support_trigger = yes
-			}
+			NOT = { has_country_leader = { name = "Fallen Government" ruling_only = yes } }
+			# OR = {
+				# NOT = { has_government = democratic }
+				# riksdag_medium_support_trigger = yes
+			# }
 		}
 		bypass = { NOT = { has_idea = neutrality_idea } }
 		x = -6
@@ -195,7 +195,10 @@ focus_tree = {
 		id = SWE_give_SOV_preferential_treatment
 		icon = GFX_focus_chi_mission_to_the_soviet_union
 		available = {
-			
+			NOT = { 
+				has_war_with = SOV
+				is_in_faction = yes
+			}
 		}
 		x = -2
 		y = 1
@@ -222,32 +225,10 @@ focus_tree = {
 		completion_reward = {
 			every_country_with_original_tag = {
 				original_tag_to_check = SOV
-				add_opinion_modifier = {
-					target = ROOT
-					modifier = GRE_strategic_partners
-				}
-				reverse_add_opinion_modifier = {
-					target = ROOT
-					modifier = GRE_strategic_partners
-				}
-			}
-			every_country_with_original_tag = {
-				original_tag_to_check = ENG
-				add_opinion_modifier = {
-					target = ROOT
-					modifier = GRE_strategic_enemy
-				}
-			}
-			every_country_with_original_tag = {
-				original_tag_to_check = GER
-				add_opinion_modifier = {
-					target = ROOT
-					modifier = GRE_strategic_enemy
-				}
+				country_event = { id = sd_sweden.10 hours = 6 }
 			}
 			SWE_first_chamber_medium_opposition = yes
 			SWE_second_chamber_small_opposition = yes
-			ENG = {	hidden_effect = { news_event = { id = sd_news.5 days = 1 } } }
 		}
 	}
 	
@@ -255,7 +236,10 @@ focus_tree = {
 		id = SWE_give_ENG_preferential_treatment
 		icon = GFX_focus_chi_british_cooperation
 		available = {
-			
+			NOT = { 
+				has_war_with = ENG
+				is_in_faction = yes
+			}
 		}
 		x = 0
 		y = 1
@@ -282,32 +266,10 @@ focus_tree = {
 		completion_reward = {
 			every_country_with_original_tag = {
 				original_tag_to_check = ENG
-				add_opinion_modifier = {
-					target = ROOT
-					modifier = GRE_strategic_partners
-				}
-				reverse_add_opinion_modifier = {
-					target = ROOT
-					modifier = GRE_strategic_partners
-				}
-			}
-			every_country_with_original_tag = {
-				original_tag_to_check = GER
-				add_opinion_modifier = {
-					target = ROOT
-					modifier = GRE_strategic_enemy
-				}
-			}
-			every_country_with_original_tag = {
-				original_tag_to_check = SOV
-				add_opinion_modifier = {
-					target = ROOT
-					modifier = GRE_strategic_enemy
-				}
+				country_event = { id = sd_sweden.10 hours = 6 }
 			}
 			SWE_first_chamber_small_opposition = yes
 			SWE_second_chamber_medium_opposition = yes
-			ENG = {	hidden_effect = { news_event = { id = sd_news.4 days = 1 } } }
 		}
 	}
 	
@@ -315,7 +277,10 @@ focus_tree = {
 		id = SWE_give_GER_preferential_treatment
 		icon = GFX_focus_chi_mission_to_germany
 		available = {
-			
+			NOT = { 
+				has_war_with = GER 
+				is_in_faction = yes
+			}
 		}
 		x = 2
 		y = 1
@@ -342,31 +307,9 @@ focus_tree = {
 		completion_reward = {
 			every_country_with_original_tag = {
 				original_tag_to_check = GER
-				add_opinion_modifier = {
-					target = ROOT
-					modifier = GRE_strategic_partners
-				}
-				reverse_add_opinion_modifier = {
-					target = ROOT
-					modifier = GRE_strategic_partners
-				}
-			}
-			every_country_with_original_tag = {
-				original_tag_to_check = SOV
-				add_opinion_modifier = {
-					target = ROOT
-					modifier = GRE_strategic_enemy
-				}
-			}
-			every_country_with_original_tag = {
-				original_tag_to_check = ENG
-				add_opinion_modifier = {
-					target = ROOT
-					modifier = GRE_strategic_enemy
-				}
+				country_event = { id = sd_sweden.10 hours = 6 }
 			}
 			SWE_second_chamber_large_opposition = yes
-			GER = {	hidden_effect = { news_event = { id = sd_news.3 days = 1 } } }
 		}
 	}
 	
@@ -374,7 +317,19 @@ focus_tree = {
 		id = SWE_exclusive_iron_exports
 		icon = GFX_focus_SWE_exclusive_iron_exports
 		available = {
-			
+			if = {
+				limit = { has_completed_focus = SWE_give_GER_preferential_treatment }
+				NOT = { has_war_with = GER }
+			}
+			else_if = {
+				limit = { has_completed_focus = SWE_give_ENG_preferential_treatment }
+				NOT = { has_war_with = ENG }
+			}
+			else_if = {
+				limit = { has_completed_focus = SWE_give_SOV_preferential_treatment }
+				NOT = { has_war_with = SOV }
+			}
+			NOT = { is_in_faction = yes }
 		}
 		x = 0
 		y = 1
@@ -394,20 +349,64 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
 		
 		completion_reward = {
 			if = {
 				limit = { has_completed_focus = SWE_give_SOV_preferential_treatment }
 				every_country_with_original_tag = {
 					original_tag_to_check = SOV
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = SWE_exclusive_exports
+					}
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strategic_partners
+					}
 					add_opinion_modifier = {
 						target = ROOT
-						modifier = GRE_strong_trading_ties
+						modifier = GRE_strategic_partners
 					}
 					add_popularity = {
-						ideology = communism
+						ideology = fascism
 						popularity = 0.1
+					}
+					remove_opinion_modifier = {
+						target = ROOT
+						modifier = BUL_strengthened_relations_with_us
+					}
+				}
+				every_country_with_original_tag = {
+					original_tag_to_check = GER
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strategic_enemy
+					}
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strategic_enemy
+					}
+				}
+				every_country_with_original_tag = {
+					original_tag_to_check = ENG
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strategic_enemy
+					}
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strategic_enemy
+					}
+				}
+				SWE = {
+					remove_opinion_modifier = {
+						target = SOV
+						modifier = BUL_strengthened_relations_with_us
+					}
+					remove_opinion_modifier = {
+						target = SOV
+						modifier = SWE_preferential_treatment
 					}
 				}
 				add_ideas = SWE_exclusive_iron_exports_idea
@@ -417,13 +416,57 @@ focus_tree = {
 				limit = { has_completed_focus = SWE_give_ENG_preferential_treatment }
 				every_country_with_original_tag = {
 					original_tag_to_check = ENG
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = SWE_exclusive_exports
+					}
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strategic_partners
+					}
 					add_opinion_modifier = {
 						target = ROOT
-						modifier = GRE_strong_trading_ties
+						modifier = GRE_strategic_partners
 					}
 					add_popularity = {
-						ideology = democratic
+						ideology = fascism
 						popularity = 0.1
+					}
+					remove_opinion_modifier = {
+						target = ROOT
+						modifier = BUL_strengthened_relations_with_us
+					}
+				}
+				every_country_with_original_tag = {
+					original_tag_to_check = GER
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strategic_enemy
+					}
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strategic_enemy
+					}
+				}
+				every_country_with_original_tag = {
+					original_tag_to_check = SOV
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strategic_enemy
+					}
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strategic_enemy
+					}
+				}
+				SWE = {
+					remove_opinion_modifier = {
+						target = ENG
+						modifier = BUL_strengthened_relations_with_us
+					}
+					remove_opinion_modifier = {
+						target = ENG
+						modifier = SWE_preferential_treatment
 					}
 				}
 				add_ideas = SWE_exclusive_iron_exports_idea
@@ -433,13 +476,57 @@ focus_tree = {
 				limit = { has_completed_focus = SWE_give_GER_preferential_treatment }
 				every_country_with_original_tag = {
 					original_tag_to_check = GER
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = SWE_exclusive_exports
+					}
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strategic_partners
+					}
 					add_opinion_modifier = {
 						target = ROOT
-						modifier = GRE_strong_trading_ties
+						modifier = GRE_strategic_partners
 					}
 					add_popularity = {
 						ideology = fascism
 						popularity = 0.1
+					}
+					remove_opinion_modifier = {
+						target = ROOT
+						modifier = BUL_strengthened_relations_with_us
+					}
+				}
+				every_country_with_original_tag = {
+					original_tag_to_check = ENG
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strategic_enemy
+					}
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strategic_enemy
+					}
+				}
+				every_country_with_original_tag = {
+					original_tag_to_check = SOV
+					reverse_add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strategic_enemy
+					}
+					add_opinion_modifier = {
+						target = ROOT
+						modifier = GRE_strategic_enemy
+					}
+				}
+				SWE = {
+					remove_opinion_modifier = {
+						target = GER
+						modifier = BUL_strengthened_relations_with_us
+					}
+					remove_opinion_modifier = {
+						target = GER
+						modifier = SWE_preferential_treatment
 					}
 				}
 				add_ideas = SWE_exclusive_iron_exports_idea
@@ -491,7 +578,7 @@ focus_tree = {
 					ideology = communism
 					popularity = 0.1
 				}
-				SWE_second_chamber_medium_opposition = yes
+				SWE_riksdag_medium_opposition = yes
 			}
 			if = {
 				limit = { has_completed_focus = SWE_give_ENG_preferential_treatment }
@@ -500,7 +587,7 @@ focus_tree = {
 					ideology = democratic
 					popularity = 0.1
 				}
-				SWE_second_chamber_medium_opposition = yes
+				SWE_riksdag_medium_opposition = yes
 			}
 			if = {
 				limit = { has_completed_focus = SWE_give_GER_preferential_treatment }
@@ -509,7 +596,7 @@ focus_tree = {
 					ideology = fascism
 					popularity = 0.1
 				}
-				SWE_second_chamber_medium_opposition = yes
+				SWE_riksdag_medium_opposition = yes
 			}
 			if = {
 				limit = {
@@ -553,31 +640,15 @@ focus_tree = {
 		completion_reward = {
 			if = {
 				limit = { has_completed_focus = SWE_give_SOV_preferential_treatment }
-				diplomatic_relation = {
-					country = SOV
-					relation = non_aggression_pact
-					active = yes
-				}
-				add_political_power = 120
+				SOV = { country_event = { id = sd_sweden.14 hours = 6 } }
 			}
 			if = {
 				limit = { has_completed_focus = SWE_give_ENG_preferential_treatment }
-				diplomatic_relation = {
-					country = ENG
-					relation = non_aggression_pact
-					active = yes
-				}
-				add_political_power = 120
+				ENG = { country_event = { id = sd_sweden.14 hours = 6 } }
 			}
 			if = {
 				limit = { has_completed_focus = SWE_give_GER_preferential_treatment }
-				give_military_access = GER
-				diplomatic_relation = {
-					country = GER
-					relation = non_aggression_pact
-					active = yes
-				}
-				add_political_power = 120
+				GER = { country_event = { id = sd_sweden.14 hours = 6 } }
 			}
 			if = {
 				limit = {
@@ -621,36 +692,15 @@ focus_tree = {
 		completion_reward = {
 			if = {
 				limit = { has_completed_focus = SWE_give_SOV_preferential_treatment }
-				SOV = {
-					diplomatic_relation = {
-						country = ROOT
-						relation = guarantee
-						active = yes
-					}
-				}
-				add_stability = 0.1
+				SOV = { country_event = { id = sd_sweden.11 hours = 6 } }
 			}
 			if = {
 				limit = { has_completed_focus = SWE_give_ENG_preferential_treatment }
-				ENG = {
-					diplomatic_relation = {
-						country = ROOT
-						relation = guarantee
-						active = yes
-					}
-				}
-				add_stability = 0.1				
+				ENG = { country_event = { id = sd_sweden.11 hours = 6 } }		
 			}
 			if = {
 				limit = { has_completed_focus = SWE_give_GER_preferential_treatment }
-				GER = {
-					diplomatic_relation = {
-						country = ROOT
-						relation = guarantee
-						active = yes
-					}
-				}
-				add_stability = 0.1
+				GER = { country_event = { id = sd_sweden.11 hours = 6 } }
 			}
 			if = {
 				limit = {
@@ -749,8 +799,68 @@ focus_tree = {
 
 		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			add_ideas = offensive_realism
+			add_ideas = SWE_offensive_realism
 			set_rule = { can_send_volunteers = yes }
+		}
+	}
+	
+	focus = {
+		id = SWE_swedish_rearmament
+		icon = GFX_focus_generic_license_production
+		available = {
+			
+		}
+		x = 1
+		y = 1
+		prerequisite = { focus = SWE_offensive_realism }
+		relative_position_id = SWE_offensive_realism
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = SWE_swedish_rearmament_idea
+		}
+	}
+	
+	focus = {
+		id = SWE_varnplikt #Conscription
+		icon = GFX_focus_generic_manpower
+		available = {
+			
+		}
+		x = 0
+		y = 1
+		prerequisite = { focus = SWE_swedish_rearmament }
+		relative_position_id = SWE_swedish_rearmament
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			add_ideas = SWE_varnplikt_idea
 		}
 	}
 	
@@ -808,7 +918,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
 			add_tech_bonus = {
 				bonus = 1.0
@@ -846,7 +956,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			set_rule = { can_create_factions = yes }
 			create_faction = SWE_northern_lights
@@ -862,11 +972,15 @@ focus_tree = {
 							# original_tag = LIT
 							# original_tag = POL
 						# }
-						# has_opinion_modifier = TUR_assertive_regional_defender
+						# NOT = {
+							# has_war_with = ROOT
+							# is_in_faction = yes
+						# }
 					# }
 				# }
-				# country_event = { id = bftb_turkey.41 }
+				# country_event = { id = generic.5 }
 			# }
+			hidden_effect = { news_event = { id = sd_news.6 days = 1 } }
 		}
 	}
 	
@@ -895,7 +1009,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
 			country_event = { id = sd_sweden.6 hours = 6 }
 		}
@@ -926,54 +1040,10 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_ANNEXATION }
 		
 		completion_reward = {
 			country_event = { id = sd_sweden.2 hours = 6 }
-		}
-	}
-	
-	focus = {
-		id = SWE_denounce_the_treaty_of_nystad
-		icon = GFX_focus_renounce_the_treaty_of_trianon
-		available = {
-			
-		}
-		x = 1
-		y = 1
-		prerequisite = { focus = SWE_amend_the_great_discord }
-		prerequisite = { focus = SWE_subdue_norway }
-		relative_position_id = SWE_amend_the_great_discord
-		
-		cost = 10
-		
-		ai_will_do = {
-			base = 0
-			modifier = { 
-				add = 1
-				OR = { 
-					is_historical_focus_on = no
-					has_government = democratic
-				}
-			}
-		}
-
-		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			every_state = {
-				limit = { is_core_of = EST }
-				ROOT = {
-					add_state_claim = PREV
-				}
-			}
-			every_state = {
-				limit = { is_core_of = LAT }
-				ROOT = {
-					add_state_claim = PREV
-				}
-			}
-			add_state_claim = 208
-			add_state_claim = 195
 		}
 	}
 	
@@ -1032,25 +1102,26 @@ focus_tree = {
 				}
 			}
 			# Estonia
-			custom_trigger_tooltip = {
-				tooltip = controls_estonia
-				controls_state = 13
-				controls_state = 191
-			}
+			# custom_trigger_tooltip = {
+				# tooltip = controls_estonia
+				# controls_state = 13
+				# controls_state = 191
+			# }
 			# Latvia
-			OR {
-				controls_state = 12
-				custom_trigger_tooltip = {
-					tooltip = controls_latvia
-					controls_state = 12
-					controls_state = 190
-				}
-			}
+			# OR {
+				# controls_state = 12
+				# custom_trigger_tooltip = {
+					# tooltip = controls_latvia
+					# controls_state = 12
+					# controls_state = 190
+				# }
+			# }
 		}
-		x = 0
+		x = 1
 		y = 1
-		prerequisite = { focus = SWE_denounce_the_treaty_of_nystad }
-		relative_position_id = SWE_denounce_the_treaty_of_nystad
+		prerequisite = { focus = SWE_amend_the_great_discord }
+		prerequisite = { focus = SWE_subdue_norway }
+		relative_position_id = SWE_amend_the_great_discord
 		
 		cost = 10
 		
@@ -1065,7 +1136,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 		completion_reward = {
 			set_cosmetic_tag = SWE_EMP
 			add_political_power = 250
@@ -1074,14 +1145,14 @@ focus_tree = {
 				limit = { is_core_of = FIN }
 				add_core_of = ROOT
 			}
-			every_state = {
-				limit = { is_core_of = EST }
-				add_core_of = ROOT
-			}
-			every_state = {
-				limit = { is_core_of = LAT }
-				add_core_of = ROOT
-			}
+			# every_state = {
+				# limit = { is_core_of = EST }
+				# add_core_of = ROOT
+			# }
+			# every_state = {
+				# limit = { is_core_of = LAT }
+				# add_core_of = ROOT
+			# }
 			if = {
 				limit = { has_global_flag = sweden_demanded_trondelag }
 				143 = { add_core_of = ROOT }
@@ -1098,18 +1169,19 @@ focus_tree = {
 					add_core_of = ROOT
 				}
 			}
-			195 = { add_core_of = ROOT }
-			208 = { add_core_of = ROOT }
+			# 195 = { add_core_of = ROOT }
+			# 208 = { add_core_of = ROOT }
+			hidden_effect = { news_event = { id = sd_news.7 days = 1 } }
 		}
 	}
 	
 	focus = {
-		id = SWE_the_swedish_deluge
-		icon = GFX_focus_SWE_deluge
+		id = SWE_denounce_the_treaty_of_nystad
+		icon = GFX_focus_renounce_the_treaty_of_trianon
 		available = {
 			
 		}
-		x = 0
+		x = -1
 		y = 1
 		prerequisite = { focus = SWE_reform_swedish_empire }
 		relative_position_id = SWE_reform_swedish_empire
@@ -1127,7 +1199,50 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			every_state = {
+				limit = { is_core_of = EST }
+				ROOT = {
+					add_state_claim = PREV
+				}
+			}
+			every_state = {
+				limit = { is_core_of = LAT }
+				ROOT = {
+					add_state_claim = PREV
+				}
+			}
+			add_state_claim = 208
+			add_state_claim = 195
+		}
+	}
+	
+	focus = {
+		id = SWE_the_swedish_deluge
+		icon = GFX_focus_SWE_deluge
+		available = {
+			
+		}
+		x = 1
+		y = 1
+		prerequisite = { focus = SWE_reform_swedish_empire }
+		relative_position_id = SWE_reform_swedish_empire
+		
+		cost = 10
+		
+		ai_will_do = {
+			base = 0
+			modifier = { 
+				add = 1
+				OR = { 
+					is_historical_focus_on = no
+					has_government = democratic
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
 			add_ideas = SWE_swedish_deluge
 			create_wargoal = {
@@ -1177,24 +1292,24 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_INDUSTRY }
 		
-		complete_tooltip = {
-			every_owned_state = {
-				limit = { has_state_flag = SWE_nationalized_industry_flag }
-				add_extra_state_shared_building_slots = 1
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-			}			
-		}
+		# complete_tooltip = {
+			# every_owned_state = {
+				# limit = { has_state_flag = SWE_nationalized_industry_flag }
+				# add_extra_state_shared_building_slots = 1
+				# add_building_construction = {
+					# type = arms_factory
+					# level = 1
+					# instant_build = yes
+				# }
+				# add_building_construction = {
+					# type = industrial_complex
+					# level = 1
+					# instant_build = yes
+				# }
+			# }			
+		# }
 
 		completion_reward = {
 			custom_effect_tooltip = available_political_advisor
@@ -1294,7 +1409,10 @@ focus_tree = {
 		id = SWE_reinforce_class_struggle_notion
 		icon = GFX_focus_spr_class_war
 		available = {
-			
+			OR = {
+				riksdag_low_support_trigger = yes
+				communism > 0.3
+			}
 		}
 		x = -1
 		y = 1
@@ -1315,13 +1433,13 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 		completion_reward = {
 			add_timed_idea = {
 				idea = class_struggle_rekindled
 				days = 365
 			}
-			SWE_first_chamber_large_opposition = yes
+			SWE_first_chamber_small_opposition = yes
 		}
 	}
 	
@@ -1353,10 +1471,10 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
 			add_ideas = SWE_nationalized_industry
-			SWE_first_chamber_large_opposition = yes
+			SWE_first_chamber_medium_opposition = yes
 		}
 	}
 	
@@ -1388,7 +1506,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_INDUSTRY }
 
 		completion_reward = {
 			add_ideas = SWE_state_ownership_of_production
@@ -1400,7 +1518,10 @@ focus_tree = {
 		id = SWE_reinforce_class_solidarity_notion
 		icon = GFX_focus_generic_concessions
 		available = {
-			
+			OR = {
+				riksdag_low_support_trigger = yes
+				fascism > 0.3
+			}
 		}
 		x = 1
 		y = 1
@@ -1427,7 +1548,7 @@ focus_tree = {
 				idea = class_solidarity
 				days = 365
 			}
-			SWE_second_chamber_large_opposition = yes
+			SWE_second_chamber_small_opposition = yes
 		}
 	}
 	
@@ -1459,10 +1580,10 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_MANPOWER }
 		completion_reward = {
 			add_ideas = SWE_loyal_aristocracy
-			SWE_second_chamber_large_opposition = yes
+			SWE_second_chamber_medium_opposition = yes
 		}
 	}
 	
@@ -1494,7 +1615,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
 			add_ideas = SWE_authoritarian_corporatism_idea
 			SWE_second_chamber_large_opposition = yes
@@ -1617,7 +1738,7 @@ focus_tree = {
 			}
 		}
 
-		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
 		completion_reward = {
 			hidden_effect = {
 				set_rule = {
@@ -1631,6 +1752,7 @@ focus_tree = {
 				}
 				custom_effect_tooltip = cost_reduced_last_stand
 			}
+			add_war_support = 0.3
 		}
 	}
 }

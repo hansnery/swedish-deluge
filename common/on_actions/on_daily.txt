@@ -14,6 +14,11 @@ on_actions = {
 				}
 				add_to_variable = { senators_support = 0.035 }
 			}
+			if = {
+				limit = { original_tag = SWE }
+				clamp_variable = { var = senators_support min = 0 max = senators_total }
+				clamp_variable = { var = representatives_support min = 0 max = representatives_total }
+			}
 		}
     }
 }

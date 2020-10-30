@@ -21,7 +21,7 @@ country_event = {
 			add_idea = interventionist_gustaf_v
 		}
 		add_stability = -0.15
-		add_political_power = -150
+		# add_political_power = -150
 		create_country_leader = {
 			name = "Fallen Government"
 			desc = "POLITICS_FALLEN_GOVERNMENT_DESC"
@@ -408,5 +408,220 @@ country_event = {
 			type = annex_everything
 		}
 		hidden_effect = { news_event = { id = sd_news.2 days = 1 } }
+	}
+}
+
+# Sweden Offers Preferential Treatment
+country_event = {
+	id = sd_sweden.10
+	title = sd_sweden.10.t
+	desc = sd_sweden.10.d
+	picture = GFX_report_event_generic_read_write
+
+	is_triggered_only = yes
+	
+	# An offer we can't refuse indeed.
+	option = {
+		name = sd_sweden.10.a
+		add_opinion_modifier = {
+			target = SWE
+			modifier = BUL_strengthened_relations_with_us
+		}
+		reverse_add_opinion_modifier = {
+			target = SWE
+			modifier = BUL_strengthened_relations_with_us
+		}
+		reverse_add_opinion_modifier = {
+			target = SWE
+			modifier = SWE_preferential_treatment
+		}
+		if = {
+			limit = { original_tag = GER }
+			hidden_effect = {
+				news_event = { id = sd_news.3 days = 1 }
+				SWE = {
+					reverse_add_opinion_modifier = { target = SOV modifier = protest_action }
+					reverse_add_opinion_modifier = { target = ENG modifier = protest_action }
+				}
+			}
+		}
+		else_if = {
+			limit = { original_tag = ENG }
+			hidden_effect = {
+				news_event = { id = sd_news.4 days = 1 }
+				SWE = {
+					reverse_add_opinion_modifier = { target = SOV modifier = protest_action }
+					reverse_add_opinion_modifier = { target = GER modifier = protest_action }
+				}
+			}
+		}
+		else_if = {
+			limit = { original_tag = SOV }
+			hidden_effect = {
+				news_event = { id = sd_news.5 days = 1 }
+				SWE = {
+					reverse_add_opinion_modifier = { target = ENG modifier = protest_action }
+					reverse_add_opinion_modifier = { target = GER modifier = protest_action }
+				}
+			}
+		}
+	}
+	
+	# We don't need any preferential treatment.
+	option = {
+		name = sd_sweden.10.b
+		ai_chance = { 
+			factor = 0
+		}
+		reverse_add_opinion_modifier = {
+			target = SWE
+			modifier = SWE_rebuffed_us
+		}
+	}
+}
+
+# Sweden Seeks Protection
+country_event = {
+	id = sd_sweden.11
+	title = sd_sweden.11.t
+	desc = sd_sweden.11.d
+	picture = GFX_report_event_generic_sign_treaty1
+
+	is_triggered_only = yes
+	
+	# No one will touch [SWE.GetName] under our watch.
+	option = {
+		name = sd_sweden.11.a
+		give_guarantee = FROM
+		SWE = { country_event = { id = sd_sweden.12 hours = 6 } }
+	}
+	
+	# We can't give them any assurances.
+	option = {
+		name = sd_sweden.11.b
+		ai_chance = { 
+			factor = 0
+		}
+		SWE = { country_event = { id = sd_sweden.13 hours = 6 } }
+	}
+}
+
+# [FROM.GetNameDef] Guarantees [SWE.GetNameDef]
+country_event = {
+	id = sd_sweden.12
+	title = sd_sweden.12.t
+	desc = sd_sweden.12.d
+	picture = GFX_report_event_generic_sign_treaty1
+
+	is_triggered_only = yes
+	
+	# No one will touch [SWE.GetName] under our watch.
+	option = {
+		name = sd_sweden.12.a
+		effect_tooltip = {
+			FROM = {
+				give_guarantee = SWE
+			}
+		}
+		add_stability = 0.1
+		SWE_riksdag_large_support = yes
+	}
+}
+
+# [FROM.GetNameDef] Denies Our Request for Support
+country_event = {
+	id = sd_sweden.13
+	title = sd_sweden.13.t
+	desc = sd_sweden.13.d
+	picture = GFX_report_event_generic_sign_treaty1
+
+	is_triggered_only = yes
+	
+	# No one will touch [SWE.GetName] under our watch.
+	option = {
+		name = sd_sweden.13.a
+		add_opinion_modifier = {
+			target = FROM
+			modifier = betrayed_our_cause
+		}
+		add_stability = -0.1
+		SWE_riksdag_large_opposition = yes
+	}
+}
+
+# Sweden Wants to Sign a Non-Aggression Pact
+country_event = {
+	id = sd_sweden.14
+	title = sd_sweden.14.t
+	desc = sd_sweden.14.d
+	picture = GFX_report_event_generic_sign_treaty2
+
+	is_triggered_only = yes
+	
+	# We promise not to blitz Stockholm.
+	option = {
+		name = sd_sweden.14.a
+		diplomatic_relation = {
+			country = SWE
+			relation = non_aggression_pact
+			active = yes
+		}
+		SWE = { country_event = { id = sd_sweden.15 hours = 6 } }
+	}
+	
+	# We can't give them any assurances.
+	option = {
+		name = sd_sweden.11.b
+		ai_chance = { 
+			factor = 0
+		}
+		SWE = { country_event = { id = sd_sweden.16 hours = 6 } }
+	}
+}
+
+# [FROM.GetNameDef] Accepts Our Proposal
+country_event = {
+	id = sd_sweden.15
+	title = sd_sweden.15.t
+	desc = sd_sweden.15.d
+	picture = GFX_report_event_generic_sign_treaty2
+
+	is_triggered_only = yes
+	
+	# No one will touch [SWE.GetName] under our watch.
+	option = {
+		name = sd_sweden.15.a
+		effect_tooltip = {
+			FROM = {
+				diplomatic_relation = {
+					country = SWE
+					relation = non_aggression_pact
+					active = yes
+				}
+			}
+		}
+		add_political_power = 120
+		SWE_riksdag_medium_support = yes
+	}
+}
+
+# [[FROM.GetNameDef] Refuses Our Proposal
+country_event = {
+	id = sd_sweden.16
+	title = sd_sweden.16.t
+	desc = sd_sweden.16.d
+	picture = GFX_report_event_generic_sign_treaty2
+
+	is_triggered_only = yes
+	
+	# No one will touch [SWE.GetName] under our watch.
+	option = {
+		name = sd_sweden.13.a
+		add_opinion_modifier = {
+			target = FROM
+			modifier = betrayed_our_cause
+		}
+		add_political_power = -120
+		SWE_riksdag_medium_opposition = yes
 	}
 }
