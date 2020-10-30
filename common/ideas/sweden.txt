@@ -311,7 +311,7 @@ ideas = {
 
 		SWE_osten_unden = {
 
-			picture = generic_political_advisor_europe_2
+			picture = generic_political_advisor_europe_4
 
 			allowed = {
 				original_tag = SWE
@@ -333,7 +333,7 @@ ideas = {
 		
 		SWE_sven_olov_lindholm = {
 		
-			picture = generic_political_advisor_europe_1
+			picture = generic_political_advisor_europe_2
 			
 			allowed = {
 				original_tag = SWE
@@ -353,7 +353,8 @@ ideas = {
 		}
 		
 		SWE_communist_revolutionary = {
-
+			
+			picture = generic_political_advisor_europe_1
 			
 			allowed = {
 				original_tag = SWE

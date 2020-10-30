@@ -188,6 +188,11 @@ focus_tree = {
 		completion_reward = {
 			remove_ideas = neutrality_idea
 			SWE_second_chamber_small_opposition = yes
+			if = {
+				limit = { has_country_flag = SWE_king_promises_neutrality }
+				custom_effect_tooltip = breaking_promise_tt
+				add_stability = -0.3
+			}
 		}
 	}
 	
@@ -1682,8 +1687,8 @@ focus_tree = {
 		}
 		x = 0
 		y = 1
-		prerequisite = { focus = SWE_restore_old_privileges }
-		mutually_exclusive = { focus = SWE_state_ownership_of_means_of_production focus = SWE_the_second_great_reduction }
+		prerequisite = { focus = SWE_the_second_great_reduction focus = SWE_restore_old_privileges }
+		mutually_exclusive = { focus = SWE_state_ownership_of_means_of_production }
 		relative_position_id = SWE_restore_old_privileges
 		
 		cost = 10
