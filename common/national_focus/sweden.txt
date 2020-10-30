@@ -329,7 +329,6 @@ focus_tree = {
 				limit = { has_completed_focus = SWE_give_SOV_preferential_treatment }
 				NOT = { has_war_with = SOV }
 			}
-			NOT = { is_in_faction = yes }
 		}
 		x = 0
 		y = 1
